@@ -3,3 +3,52 @@ title: "About"
 ---
 
 The most recent copy of my **resume** can be found [here.](pages/calvinc-resume.pdf)
+
+Calvin Carter is a passionate Data Scientist with project experience using Python, R, and PostgreSQL.
+
+### Education
+
+---
+
+**University of California, Berkeley** &nbsp;
+<img src="pages/cal-logo.png" alt="LinkedIn logo" width="28" height="28">
+
+*Master of Arts, Statistics*
+
+Expected December, 2025
+
+Relevant Coursework: Introduction to Probability at an Advanced Level, Introduction to Statistics at an Advanced Level, Statistical Computing
+
+**University of California, Berkeley** &nbsp;
+<img src="pages/cal-logo.png" alt="LinkedIn logo" width="28" height="28">
+
+*Bachelor of Arts, Data Science* with an emphasis in Applied Mathematics and Modeling
+
+Expected December, 2025
+
+Relevant Coursework: Data Engineering; Data, Inference, and Decisions; Principles and Techniques of Data Science; Data Structures; Concepts in Computing with Data; Linear Programming and Network Flows; Linear Algebra; Structure and Interpretation of Computer Programs
+
+**Other:**
+
+Certification in "Mastering Data Analysis in Excel", **Duke University** &nbsp;
+<img src="pages/duke-logo.png" alt="LinkedIn logo" width="28" height="28">
+
+### Skills
+
+---
+
+**Programming Languages:** Python, R, SQL, Java, C++.
+
+**Libraries, Packages, and more:** NumPy, Pandas, SciPy, scikit-learn, Tidyverse, R Packages, Quarto, MongoDB.
+
+**Other Technical:** Data Visualization, Statistical Modeling, Machine Learning, Causal Inference, Git/GitHub.
+
+**Soft Skills:** Ability to Effectively Communicate, Decision Making, Adaptability, Curiosity, Teaching, Critical Thinking,
+Attention to Detail, Problem Solving Skills, Focus, Leadership, Presentation, Ambition, Creativity, Collaboration.
+
+### Projects
+
+---
+
+
+
