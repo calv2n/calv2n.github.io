@@ -3,7 +3,7 @@ title: "Calvin Carter"
 subtitle: "MA Statistics Student at UC Berkeley"
 ---
 
-I work as a Graduate Student Instructor at the UC Berkeley Statistics Department. I am currently seeking internship opportunities in Data Science.
+Graduate Student Instructor at the UC Berkeley Statistics Department. Currently seeking internship opportunities in Data Science.
 
 More about me [here.](about.qmd)
 
@@ -12,3 +12,5 @@ More about me [here.](about.qmd)
 <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="27" height="27"> &nbsp; <a href=https://www.github.com/calv2n target="_blank" text><strong>/calv2n</strong></a> &nbsp; &nbsp;
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <i class="fa fa-envelope" style="font-size:20px"></i> &nbsp; `'{}@{}.edu'.format('calv2n', 'berkeley')`
+
+<img src="pages/SSP_26.jpg" alt="Image of Calvin Carter" width="299" height="378"/>

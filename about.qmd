@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+The most recent copy of my **resume** can be found [here.](pages/calvinc-resume.pdf)

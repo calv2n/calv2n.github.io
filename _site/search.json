@@ -4,13 +4,13 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "The most recent copy of my resume can be found here."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Calvin Carter",
     "section": "",
-    "text": "/calvinmcarter        /calv2n     ✉️   '{}@{}.edu'.format('calv2n', 'berkeley')"
+    "text": "Graduate Student Instructor at the UC Berkeley Statistics Department. Currently seeking internship opportunities in Data Science.\nMore about me here.\n   /calvinmcarter        /calv2n         '{}@{}.edu'.format('calv2n', 'berkeley')"
   }
 ]
