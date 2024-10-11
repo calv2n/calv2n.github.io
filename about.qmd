@@ -1,54 +1,113 @@
 ---
 title: "About"
+format:
+  html:
+    code-links:
+      - text: site repository
+        href: https://www.github.com/calv2n/calvin
+        icon: github
 ---
 
-The most recent copy of my **resume** can be found [here.](pages/calvinc-resume.pdf)
+The most recent copy of my **resume** [can be found here.](pages/calvinc-resume.pdf)
 
-Calvin Carter is a passionate Data Scientist with project experience using Python, R, and PostgreSQL.
+A portfolio of my **Data Science projects** [can be found here.](projects.qmd)
 
-### Education
+Calvin Carter is a passionate Data Scientist with extensive project experience using Python, R, and PostgreSQL. His current career goal is an internship in Data Science or Data Analytics while he completes his Masters degree in Statistics at UC Berkeley.
 
----
+## Education
 
+:::{#education1 style="line-height: 0.8;"}
 **University of California, Berkeley** &nbsp;
 <img src="pages/cal-logo.png" alt="LinkedIn logo" width="28" height="28">
 
-*Master of Arts, Statistics*
+Master of Arts, Statistics *with an emphasis in machine learning*
 
 Expected December, 2025
+:::
 
-Relevant Coursework: Introduction to Probability at an Advanced Level, Introduction to Statistics at an Advanced Level, Statistical Computing
-
+:::{#education2 style="line-height: 0.8;"}
 **University of California, Berkeley** &nbsp;
 <img src="pages/cal-logo.png" alt="LinkedIn logo" width="28" height="28">
 
-*Bachelor of Arts, Data Science* with an emphasis in Applied Mathematics and Modeling
+Bachelor of Arts, Data Science *with an emphasis in Applied Mathematics and Modeling*
 
-Expected December, 2025
-
-Relevant Coursework: Data Engineering; Data, Inference, and Decisions; Principles and Techniques of Data Science; Data Structures; Concepts in Computing with Data; Linear Programming and Network Flows; Linear Algebra; Structure and Interpretation of Computer Programs
+May 2024
+:::
 
 **Other:**
-
 Certification in "Mastering Data Analysis in Excel", **Duke University** &nbsp;
 <img src="pages/duke-logo.png" alt="LinkedIn logo" width="28" height="28">
 
-### Skills
-
----
+## Skills
 
 **Programming Languages:** Python, R, SQL, Java, C++.
 
 **Libraries, Packages, and more:** NumPy, Pandas, SciPy, scikit-learn, Tidyverse, R Packages, Quarto, MongoDB.
 
-**Other Technical:** Data Visualization, Statistical Modeling, Machine Learning, Causal Inference, Git/GitHub.
+**Other Technical:** MS Office, Data Visualization, Statistical Modeling, Machine Learning, Causal Inference, Git/GitHub.
 
-**Soft Skills:** Ability to Effectively Communicate, Decision Making, Adaptability, Curiosity, Teaching, Critical Thinking,
-Attention to Detail, Problem Solving Skills, Focus, Leadership, Presentation, Ambition, Creativity, Collaboration.
+**Soft Skills:** Ability to Effectively Communicate, Decision Making, Adaptability, Critical Thinking, Curiosity, Attention to Detail, Problem Solving Skills, Focus, Leadership, Presentation, Ambition, Creativity, Collaboration, Teaching.
+
+## Work Experience
+
+:::{#work-experience1 style="line-height: 0.8;"}
+
+**Graduate Student Instructor** - Concepts in Computing with Data 
+
+*UC Berkeley Statistics Department*
+
+August 2024 - Present
+:::
+
+- Deliver engaging lab sections for a cohort of 76 students, covering foundational and advanced statistical
+computing concepts in R.
+
+- Guide students in adopting best practices for data analysis and statistical computing, including effective use
+of R packages, reproducible research techniques, and data visualization principles.
+
+:::{#work-experience2 style="line-height: 0.8;"}
+**Co-Founder & Facilitator - Intro to Data Visualization DeCal Course**
+
+*UC Berkeley Statistics Department*
+
+June 2023 - July 2024
+:::
+- Worked with Berkeley Statistics Professor to develop syllabus and 14 weeks of course content including
+lectures, labs, homework, and video tutorials.
+
+- Conducted surveys to adjust and improve course material throughout each semester. Saw an increase of
+over 300% in enrolled students between Fall and Spring semesters as a result of improvements.
+
+::: {#work-experience3}
+
+::: {style="line-height: 0.8;"}
+**Academic Tutor**
+
+*UC Berkeley Statistics Department*
+:::
+
+- ::: {style="line-height: 0.8;"}
+    **Concepts in Computing with Data**
+
+    January 2024 - May 2024
+  :::
+
+    - Effectively communicated statistical computing concepts in a detailed and easily digestible manner during twice weekly office hours.
+   
+    - Contributed to understanding of statistical computing concepts in R and leadership.
+    
+
+- ::: {style="line-height: 0.8;"}
+    **Introduction to Probability and Statistics**
+
+    January 2023 - May 2023
+  :::
+
+    - Thrived in a teamwork setting and Improved teaching skills. 
+    
+    - Created walkthrough videos of problem sets and held weekly office hours.
+:::
 
 ### Projects
 
----
-
-
-
+A portfolio of my Data Science projects [can be found here.](projects.qmd)

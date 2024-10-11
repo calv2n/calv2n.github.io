@@ -4,7 +4,35 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "The most recent copy of my resume can be found here.\nCalvin Carter is a passionate Data Scientist with project experience using Python, R, and PostgreSQL.\n\nEducation\n\nUniversity of California, Berkeley   \nMaster of Arts, Statistics\nExpected December, 2025\nRelevant Coursework: Introduction to Probability at an Advanced Level, Introduction to Statistics at an Advanced Level, Statistical Computing\nUniversity of California, Berkeley   \nBachelor of Arts, Data Science with an emphasis in Applied Mathematics and Modeling\nExpected December, 2025\nRelevant Coursework: Data Engineering; Data, Inference, and Decisions; Principles and Techniques of Data Science; Data Structures; Concepts in Computing with Data; Linear Programming and Network Flows; Linear Algebra; Structure and Interpretation of Computer Programs\nOther:\nCertification in “Mastering Data Analysis in Excel”, Duke University   \n\n\nSkills\n\nProgramming Languages: Python, R, SQL, Java, C++.\nLibraries, Packages, and more: NumPy, Pandas, SciPy, scikit-learn, Tidyverse, R Packages, Quarto, MongoDB.\nOther Technical: Data Visualization, Statistical Modeling, Machine Learning, Causal Inference, Git/GitHub.\nSoft Skills: Ability to Effectively Communicate, Decision Making, Adaptability, Curiosity, Teaching, Critical Thinking, Attention to Detail, Problem Solving Skills, Focus, Leadership, Presentation, Ambition, Creativity, Collaboration.\n\n\nProjects"
+    "text": "The most recent copy of my resume can be found here.\nA portfolio of my Data Science projects can be found here.\nCalvin Carter is a passionate Data Scientist with extensive project experience using Python, R, and PostgreSQL. His current career goal is an internship in Data Science or Data Analytics while he completes his Masters degree in Statistics at UC Berkeley."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\n\nUniversity of California, Berkeley   \nMaster of Arts, Statistics with an emphasis in machine learning\nExpected December, 2025\n\n\nUniversity of California, Berkeley   \nBachelor of Arts, Data Science with an emphasis in Applied Mathematics and Modeling\nMay 2024\n\nOther: Certification in “Mastering Data Analysis in Excel”, Duke University"
+  },
+  {
+    "objectID": "about.html#skills",
+    "href": "about.html#skills",
+    "title": "About",
+    "section": "Skills",
+    "text": "Skills\nProgramming Languages: Python, R, SQL, Java, C++.\nLibraries, Packages, and more: NumPy, Pandas, SciPy, scikit-learn, Tidyverse, R Packages, Quarto, MongoDB.\nOther Technical: MS Office, Data Visualization, Statistical Modeling, Machine Learning, Causal Inference, Git/GitHub.\nSoft Skills: Ability to Effectively Communicate, Decision Making, Adaptability, Critical Thinking, Curiosity, Attention to Detail, Problem Solving Skills, Focus, Leadership, Presentation, Ambition, Creativity, Collaboration, Teaching."
+  },
+  {
+    "objectID": "about.html#work-experience",
+    "href": "about.html#work-experience",
+    "title": "About",
+    "section": "Work Experience",
+    "text": "Work Experience\n\nGraduate Student Instructor - Concepts in Computing with Data\nUC Berkeley Statistics Department\nAugust 2024 - Present\n\n\nDeliver engaging lab sections for a cohort of 76 students, covering foundational and advanced statistical computing concepts in R.\nGuide students in adopting best practices for data analysis and statistical computing, including effective use of R packages, reproducible research techniques, and data visualization principles.\n\n\nCo-Founder & Facilitator - Intro to Data Visualization DeCal Course\nUC Berkeley Statistics Department\nJune 2023 - July 2024\n\n\nWorked with Berkeley Statistics Professor to develop syllabus and 14 weeks of course content including lectures, labs, homework, and video tutorials.\nConducted surveys to adjust and improve course material throughout each semester. Saw an increase of over 300% in enrolled students between Fall and Spring semesters as a result of improvements.\n\n\n\nAcademic Tutor\nUC Berkeley Statistics Department\n\n\n\nConcepts in Computing with Data\nJanuary 2024 - May 2024\n\n\nEffectively communicated statistical computing concepts in a detailed and easily digestible manner during twice weekly office hours.\nContributed to understanding of statistical computing concepts in R and leadership.\n\n\nIntroduction to Probability and Statistics\nJanuary 2023 - May 2023\n\n\nThrived in a teamwork setting and Improved teaching skills.\nCreated walkthrough videos of problem sets and held weekly office hours.\n\n\n\n\nProjects\nA portfolio of my Data Science projects can be found here."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Project Portfolio",
+    "section": "",
+    "text": "text"
   },
   {
     "objectID": "index.html",
