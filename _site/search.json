@@ -32,7 +32,42 @@
     "href": "projects.html",
     "title": "Project Portfolio",
     "section": "",
-    "text": "text"
+    "text": "Description of the project\nAbstract for the project\n\nimport numpy as np\nimport pandas as pd\n\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nimport zipfile\nimport os\n\n# Plot settings\nplt.rcParams['figure.figsize'] = (12, 9)\nplt.rcParams['font.size'] = 12\n\n\ntraining_data = pd.read_csv(\"cook_county_train.csv\", index_col='Unnamed: 0')"
+  },
+  {
+    "objectID": "projects.html#predicting-housing-prices",
+    "href": "projects.html#predicting-housing-prices",
+    "title": "Project Portfolio",
+    "section": "",
+    "text": "Description of the project\nAbstract for the project\n\nimport numpy as np\nimport pandas as pd\n\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nimport zipfile\nimport os\n\n# Plot settings\nplt.rcParams['figure.figsize'] = (12, 9)\nplt.rcParams['font.size'] = 12\n\n\ntraining_data = pd.read_csv(\"cook_county_train.csv\", index_col='Unnamed: 0')"
+  },
+  {
+    "objectID": "projects.html#gradebook",
+    "href": "projects.html#gradebook",
+    "title": "Project Portfolio",
+    "section": "Gradebook",
+    "text": "Gradebook"
+  },
+  {
+    "objectID": "projects.html#diabetes-prediction",
+    "href": "projects.html#diabetes-prediction",
+    "title": "Project Portfolio",
+    "section": "Diabetes Prediction",
+    "text": "Diabetes Prediction"
+  },
+  {
+    "objectID": "projects.html#email-spam-detection",
+    "href": "projects.html#email-spam-detection",
+    "title": "Project Portfolio",
+    "section": "Email Spam Detection",
+    "text": "Email Spam Detection"
+  },
+  {
+    "objectID": "projects.html#gitlet",
+    "href": "projects.html#gitlet",
+    "title": "Project Portfolio",
+    "section": "Gitlet",
+    "text": "Gitlet"
   },
   {
     "objectID": "index.html",
