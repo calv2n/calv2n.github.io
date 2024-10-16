@@ -32,28 +32,21 @@
     "href": "projects.html",
     "title": "Project Portfolio",
     "section": "",
-    "text": "Description of the project\nAbstract for the project\n\nimport numpy as np\nimport pandas as pd\n\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nimport zipfile\nimport os\n\n# Plot settings\nplt.rcParams['figure.figsize'] = (12, 9)\nplt.rcParams['font.size'] = 12\n\n\ntraining_data = pd.read_csv(\"cook_county_train.csv\", index_col='Unnamed: 0')"
+    "text": "Active January 1 - May 31\nDescription: Gradebook is an open-source R package and Web Application that provides a consistent interface for instructors to quickly and more accurately calculate course grades.\nThe Problem: Many instructors (especially at Berkeley) opt to use Gradescope for students to upload their submissions to course assignments, as it provides an industry leading interface to instructors and readers for grading. However, Gradescope lacks functionality of implimenting a course policy. An example of a course policy (Data 88S):\n\nAt first, this might seem like a simple problem to solve with some sort of code file (perhaps using Pandas & NumPy in Python or R). But we have seen with courses such as Statistics 20 that these course policies can get extraordinarily convoluted and error prone.\nThe current best solution for instructors to calculate final grades based on their course policy is to either of the following:\n\nParallel program two seperate code books and compare the scores against one another until they agree.\n\npros: very accurate\ncons: takes two programmers that fully understand the course policy & takes longer than single code book.\n\nCreate a single code book that can result in potential bugs that result in inaccurate scores.\n\npros: faster than parallel programming\ncons: error prone and still not a fast solution.\n\n\nThe Solution: Gradebook: An interface that abstracts the code into human understandable steps.\n\nAn instructor (or reader) provides the web app with their course policy using the intuitive policy tab. Then, they can upload their course’s Gradescope CSV to see data visualizations, statistics, a final grade table, and more.\n\n\n\nGit and GitHub (including branching, pull requests, working in a team setting).\nThe importance of Teamwork & Communication in Data Science.\nThe essentials of web development (incl. JavaScript, HTML, CSS)"
   },
   {
-    "objectID": "projects.html#predicting-housing-prices",
-    "href": "projects.html#predicting-housing-prices",
-    "title": "Project Portfolio",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Calvin Carter",
     "section": "",
-    "text": "Description of the project\nAbstract for the project\n\nimport numpy as np\nimport pandas as pd\n\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nimport zipfile\nimport os\n\n# Plot settings\nplt.rcParams['figure.figsize'] = (12, 9)\nplt.rcParams['font.size'] = 12\n\n\ntraining_data = pd.read_csv(\"cook_county_train.csv\", index_col='Unnamed: 0')"
+    "text": "Graduate Student Instructor at the UC Berkeley Statistics Department. Currently seeking internship opportunities in Data Science.\nMore about me here.\n   /calvinmcarter        /calv2n         '{}@{}.edu'.format('calv2n', 'berkeley')"
   },
   {
     "objectID": "projects.html#gradebook",
     "href": "projects.html#gradebook",
     "title": "Project Portfolio",
-    "section": "Gradebook",
-    "text": "Gradebook"
-  },
-  {
-    "objectID": "projects.html#diabetes-prediction",
-    "href": "projects.html#diabetes-prediction",
-    "title": "Project Portfolio",
-    "section": "Diabetes Prediction",
-    "text": "Diabetes Prediction"
+    "section": "",
+    "text": "Active January 1 - May 31\nDescription: Gradebook is an open-source R package and Web Application that provides a consistent interface for instructors to quickly and more accurately calculate course grades.\nThe Problem: Many instructors (especially at Berkeley) opt to use Gradescope for students to upload their submissions to course assignments, as it provides an industry leading interface to instructors and readers for grading. However, Gradescope lacks functionality of implimenting a course policy. An example of a course policy (Data 88S):\n\nAt first, this might seem like a simple problem to solve with some sort of code file (perhaps using Pandas & NumPy in Python or R). But we have seen with courses such as Statistics 20 that these course policies can get extraordinarily convoluted and error prone.\nThe current best solution for instructors to calculate final grades based on their course policy is to either of the following:\n\nParallel program two seperate code books and compare the scores against one another until they agree.\n\npros: very accurate\ncons: takes two programmers that fully understand the course policy & takes longer than single code book.\n\nCreate a single code book that can result in potential bugs that result in inaccurate scores.\n\npros: faster than parallel programming\ncons: error prone and still not a fast solution.\n\n\nThe Solution: Gradebook: An interface that abstracts the code into human understandable steps.\n\nAn instructor (or reader) provides the web app with their course policy using the intuitive policy tab. Then, they can upload their course’s Gradescope CSV to see data visualizations, statistics, a final grade table, and more.\n\n\n\nGit and GitHub (including branching, pull requests, working in a team setting).\nThe importance of Teamwork & Communication in Data Science.\nThe essentials of web development (incl. JavaScript, HTML, CSS)"
   },
   {
     "objectID": "projects.html#email-spam-detection",
@@ -63,17 +56,17 @@
     "text": "Email Spam Detection"
   },
   {
+    "objectID": "projects.html#diabetes-prediction",
+    "href": "projects.html#diabetes-prediction",
+    "title": "Project Portfolio",
+    "section": "Diabetes Prediction",
+    "text": "Diabetes Prediction"
+  },
+  {
     "objectID": "projects.html#gitlet",
     "href": "projects.html#gitlet",
     "title": "Project Portfolio",
     "section": "Gitlet",
     "text": "Gitlet"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Calvin Carter",
-    "section": "",
-    "text": "Graduate Student Instructor at the UC Berkeley Statistics Department. Currently seeking internship opportunities in Data Science.\nMore about me here.\n   /calvinmcarter        /calv2n         '{}@{}.edu'.format('calv2n', 'berkeley')"
   }
 ]

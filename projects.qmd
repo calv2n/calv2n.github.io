@@ -2,40 +2,43 @@
 title: Project Portfolio
 ---
 
-## Predicting Housing Prices
-
-Description of the project
-
-Abstract for the project
-
-```{python}
-import numpy as np
-import pandas as pd
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-import zipfile
-import os
-
-# Plot settings
-plt.rcParams['figure.figsize'] = (12, 9)
-plt.rcParams['font.size'] = 12
-```
-
-```{python}
-#| eval: false
-training_data = pd.read_csv("cook_county_train.csv", index_col='Unnamed: 0')
-```
-
-```{python}
-
-```
-
 ## Gradebook
 
-## Diabetes Prediction
+Active January 1 - May 31
+
+**Description:** Gradebook is an open-source R package and Web Application that provides a consistent interface for instructors to quickly and more accurately calculate course grades.
+
+**The Problem:** Many instructors (especially at Berkeley) opt to use [Gradescope](https://www.gradescope.com) for students to upload their submissions to course assignments, as it provides an industry leading interface to instructors and readers for grading. However, Gradescope lacks functionality of implimenting a *course policy*. An example of a course policy ([Data 88S](http://stat88.org/syllabus/)):
+
+![](pages/ss-d88s.png)
+
+At first, this might seem like a simple problem to solve with some sort of code file (perhaps using Pandas & NumPy in Python or R). But we have seen with courses such as [Statistics 20](https://www.stat20.org) that these course policies can get extraordinarily convoluted and error prone. 
+
+The current best solution for instructors to calculate final grades based on their course policy is to either of the following:
+
+- Parallel program two seperate code books and compare the scores against one another until they agree.
+    - pros: very accurate
+    - cons: takes two programmers that fully understand the course policy & takes longer than single code book.
+- Create a single code book that can result in potential bugs that result in inaccurate scores.
+    - pros: faster than parallel programming
+    - cons: error prone and still not a fast solution.
+
+**The Solution:** Gradebook: An interface that abstracts the code into human understandable steps.
+
+![](pages/gb.png)
+
+An instructor (or reader) provides the web app with their course policy using the intuitive policy tab. Then, they can upload their course's Gradescope CSV to see data visualizations, statistics, a final grade table, and more.
+
+### What I Learned
+
+- Git and GitHub (including branching, pull requests, working in a team setting).
+
+- The importance of Teamwork & Communication in Data Science.
+
+- The essentials of web development (incl. JavaScript, HTML, CSS)
 
 ## Email Spam Detection
+
+## Diabetes Prediction
 
 ## Gitlet
