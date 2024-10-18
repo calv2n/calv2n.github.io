@@ -6,6 +6,8 @@ title: Project Portfolio
 
 Active January 1 - May 31
 
+https://www.github.com/gradebook-dev/
+
 **Description:** Gradebook is an open-source R package and Web Application that provides a consistent interface for instructors to quickly and more accurately calculate course grades.
 
 **The Problem:** Many instructors (especially at Berkeley) opt to use [Gradescope](https://www.gradescope.com) for students to upload their submissions to course assignments, as it provides an industry leading interface to instructors and readers for grading. However, Gradescope lacks functionality of implimenting a *course policy*. An example of a course policy ([Data 88S](http://stat88.org/syllabus/)):
@@ -23,7 +25,9 @@ The current best solution for instructors to calculate final grades based on the
     - pros: faster than parallel programming
     - cons: error prone and still not a fast solution.
 
-**The Solution:** Gradebook: An interface that abstracts the code into human understandable steps.
+**The Solution:** 
+
+Gradebook: An interface that abstracts the code into human understandable steps.
 
 ![](pages/gb.png)
 
@@ -31,14 +35,29 @@ An instructor (or reader) provides the web app with their course policy using th
 
 ### What I Learned
 
-- Git and GitHub (including branching, pull requests, working in a team setting).
+- **Git** and **GitHub** (including branching, pull requests, working in a team setting).
 
-- The importance of Teamwork & Communication in Data Science.
+- The importance of **Teamwork** & **Communication** in Data Science.
 
-- The essentials of web development (incl. JavaScript, HTML, CSS)
+- Web development essentials (incl. **HTML**, **CSS**)
 
 ## Email Spam Detection
 
 ## Diabetes Prediction
 
 ## Gitlet
+
+July 2023
+
+Source code available upon request.
+
+### What I Learned
+
+This was my first large project when I came to Berkeley as an undergraduate. Although it doesn't relate too much to data science, I 
+
+- **Java** for large scale projects
+
+- Designing and implimenting **data structures** to maximize efficiency.
+
+- Fundumentals of **Git** as a software from the ground up.
+
