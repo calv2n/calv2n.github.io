@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -120,14 +149,19 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What I Learned</a></li>
   </ul></li>
-  <li><a href="#email-spam-detection" id="toc-email-spam-detection" class="nav-link" data-scroll-target="#email-spam-detection">Email Spam Detection</a></li>
+  <li><a href="#email-spam-detection" id="toc-email-spam-detection" class="nav-link" data-scroll-target="#email-spam-detection">Email Spam Detection</a>
+  <ul class="collapse">
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a></li>
+  <li><a href="#support-vector-machine-svm" id="toc-support-vector-machine-svm" class="nav-link" data-scroll-target="#support-vector-machine-svm">Support Vector Machine (SVM)</a></li>
+  <li><a href="#what-i-learned-1" id="toc-what-i-learned-1" class="nav-link" data-scroll-target="#what-i-learned-1">What I learned</a></li>
+  </ul></li>
   <li><a href="#diabetes-prediction" id="toc-diabetes-prediction" class="nav-link" data-scroll-target="#diabetes-prediction">Diabetes Prediction</a></li>
   <li><a href="#gitlet" id="toc-gitlet" class="nav-link" data-scroll-target="#gitlet">Gitlet</a>
   <ul class="collapse">
-  <li><a href="#what-i-learned-1" id="toc-what-i-learned-1" class="nav-link" data-scroll-target="#what-i-learned-1">What I Learned</a></li>
+  <li><a href="#what-i-learned-2" id="toc-what-i-learned-2" class="nav-link" data-scroll-target="#what-i-learned-2">What I Learned</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://www.github.com/calv2n/calvin"><i class="bi bi-github"></i>site repository</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -153,8 +187,8 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="gradebook" class="level2">
 <h2 class="anchored" data-anchor-id="gradebook">Gradebook</h2>
-<p>Active January 1 - May 31</p>
-<p>https://www.github.com/gradebook-dev/</p>
+<p><strong>January 1 - May 31</strong></p>
+<p><a href="https://www.github.com/gradebook-dev/">https://www.github.com/gradebook-dev/</a></p>
 <p><strong>Description:</strong> Gradebook is an open-source R package and Web Application that provides a consistent interface for instructors to quickly and more accurately calculate course grades.</p>
 <p><strong>The Problem:</strong> Many instructors (especially at Berkeley) opt to use <a href="https://www.gradescope.com">Gradescope</a> for students to upload their submissions to course assignments, as it provides an industry leading interface to instructors and readers for grading. However, Gradescope lacks functionality of implimenting a <em>course policy</em>. An example of a course policy (<a href="http://stat88.org/syllabus/">Data 88S</a>):</p>
 <p><img src="pages/ss-d88s.png" class="img-fluid"></p>
@@ -178,8 +212,10 @@ ul.task-list li input[type="checkbox"] {
 <p>An instructor (or reader) provides the web app with their course policy using the intuitive policy tab. Then, they can upload their course’s Gradescope CSV to see data visualizations, statistics, a final grade table, and more.</p>
 <section id="what-i-learned" class="level3">
 <h3 class="anchored" data-anchor-id="what-i-learned">What I Learned</h3>
+<p>During my time with the Gradebook team, I was responsible for designing and developing the “Dashboard” which displays graphics and statistics so the instructor can visually gauge their student’s project.</p>
 <ul>
-<li><p><strong>Git</strong> and <strong>GitHub</strong> (including branching, pull requests, working in a team setting).</p></li>
+<li><p>Applying <strong>Data Visualization</strong> skills using <strong>Plotly</strong>.</p></li>
+<li><p><strong>Git</strong> and <strong>GitHub</strong> (including branching, pull requests, working with github in a team setting).</p></li>
 <li><p>The importance of <strong>Teamwork</strong> &amp; <strong>Communication</strong> in Data Science.</p></li>
 <li><p>Web development essentials (incl.&nbsp;<strong>HTML</strong>, <strong>CSS</strong>)</p></li>
 </ul>
@@ -187,21 +223,88 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="email-spam-detection" class="level2">
 <h2 class="anchored" data-anchor-id="email-spam-detection">Email Spam Detection</h2>
+<p><strong>November 2023, February 2024</strong></p>
+<p>Source code available upon request.</p>
+<p>“All models are wrong, but some are useful” - <em>George Box</em></p>
+<p>In my time as an undergraduate at Berkeley, I’ve had a few projects address the famous problem of email spam detection. In my first attempt at creating an accurate solution, I created a <strong>logistic regression</strong> model.</p>
+<section id="logistic-regression" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h3>
+<p>To find the best features for my model, I used exploritory data analysis techniques, including visualization with a heatmap of the feature correlations, bivariate data analysis with data visualization, and filling NA values in features with appropriate aggregations (mean, median, or 0 depending on skew of univariate distribution).</p>
+<p>I also used <strong>feature engineering</strong> to get some of the most effective features for my regression. Some of the best features I found were the following:</p>
+<ul>
+<li><p>Email is a “forwarded” or “reply” <strong>*</strong>.</p></li>
+<li><p>Length of subject line in email.</p></li>
+<li><p>Overall “wordiness” of email <strong>*</strong>.</p></li>
+<li><p>Proportion of capital letters in subject line <strong>*</strong>.</p></li>
+</ul>
+<p><em><code>*</code> indicates featured engineering used.</em></p>
+<p><img src="spam-email-logistic-coeff-importance.png" class="img-fluid"></p>
+<p>Resulting ROC Curve:</p>
+<p><img src="pages/roc-email-spam-logistic.png" class="img-fluid"></p>
+<p>My final <strong>test accuracy</strong> using this model was <span class="math inline">\(\approx\)</span> <strong>87%</strong>.</p>
+</section>
+<section id="support-vector-machine-svm" class="level3">
+<h3 class="anchored" data-anchor-id="support-vector-machine-svm">Support Vector Machine (SVM)</h3>
+<p>Used <strong>k-fold cross validation</strong> to optimize C value in <code>svm.SVC</code> function found in the scikit-learn package in Python. Eventually landed on a <strong>test accuracy</strong> of <strong>86%</strong> using the <code>rbf</code> kernel with a C value of 325.</p>
+</section>
+<section id="what-i-learned-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned-1">What I learned</h3>
+<ul>
+<li><p><strong>Logistic Regression</strong></p></li>
+<li><p><strong>scikit-learn</strong></p></li>
+</ul>
+</section>
 </section>
 <section id="diabetes-prediction" class="level2">
 <h2 class="anchored" data-anchor-id="diabetes-prediction">Diabetes Prediction</h2>
 </section>
 <section id="gitlet" class="level2">
 <h2 class="anchored" data-anchor-id="gitlet">Gitlet</h2>
-<p>July 2023</p>
+<p><strong>July 2023</strong></p>
 <p>Source code available upon request.</p>
-<section id="what-i-learned-1" class="level3">
-<h3 class="anchored" data-anchor-id="what-i-learned-1">What I Learned</h3>
-<p>This was my first large project when I came to Berkeley as an undergraduate. Although it doesn’t relate too much to data science, I</p>
+<p>Successfully implimented the following commands from the Git Version Control System:</p>
+<ul>
+<li><p>init: Creates a new Gitlet version-control system in the current directory.</p></li>
+<li><p>add: Adds a copy of the file as it currently exists to the <em>staging area</em>.</p></li>
+<li><p>commit: Saves a snapshot of tracked files in the current commit and staging area so they can be restored at a later time, creating a new commit.</p></li>
+<li><p>restore: Restore is used to revert files back to their previous versions. Depending on the arguments, there’s 2 different usages of restore:</p>
+<ol type="1">
+<li><p><code>java gitlet.Main restore -- [file name]</code></p></li>
+<li><p><code>java gitlet.Main restore [commit id] -- [file name]</code></p></li>
+</ol></li>
+<li><p>log: Starting at the current head commit, display information about each commit backwards along the commit tree until the initial commit, following the first parent commit links, ignoring any second parents found in merge commits.</p></li>
+</ul>
+<pre><code>===
+commit a0da1ea5a15ab613bf9961fd86f010cf74c7ee48
+Date: Thu Nov 9 20:00:05 2017 -0800
+A commit message.
+
+===
+commit 3e8bf1d794ca2e9ef8a4007275acf3751c7170ff
+Date: Thu Nov 9 17:01:33 2017 -0800
+Another commit message.
+
+===
+commit e881c9575d180a215d1a636545b8fd9abfb1d2bb
+Date: Wed Dec 31 16:00:00 1969 -0800
+initial commit</code></pre>
+<ul>
+<li><p>global-log: Like log, except displays information about all commits ever made.</p></li>
+<li><p>rm: Unstage the file if it is currently staged for addition. If the file is tracked in the current commit, stage it for removal and remove the file from the working directory if the user has not already done so.</p></li>
+<li><p>find: Prints out the ids of all commits that have the given commit message, one per line. If there are multiple such commits, it prints the ids out on separate lines.</p></li>
+<li><p>status: Displays what branches currently exist, and marks the current branch with a <code>*</code>. Also displays what files have been staged for addition or removal.</p></li>
+<li><p>branch: Creates a new branch with the given name, and points it at the current head commit.</p></li>
+<li><p>switch: Switches to the branch with the given name. Takes all files in the commit at the head of the given branch, and puts them in the working directory, overwriting the versions of the files that are already there if they exist. Also, at the end of this command, the given branch will now be considered the current branch (HEAD). Any files that are tracked in the current branch but are not present in the checked-out branch are deleted. The staging area is cleared, unless the checked-out branch is the current branch.</p></li>
+<li><p>rm-branch: Deletes the branch with the given name. This only means to delete the pointer associated with the branch; it does not mean to delete all commits that were created under the branch, or anything like that.</p></li>
+<li><p>reset: Restores all the files tracked by the given commit. Removes tracked files that are not present in that commit. Also moves the current branch’s head to that commit node.</p></li>
+</ul>
+<section id="what-i-learned-2" class="level3">
+<h3 class="anchored" data-anchor-id="what-i-learned-2">What I Learned</h3>
+<p>This was my first large project when I came to Berkeley as an undergraduate.</p>
 <ul>
 <li><p><strong>Java</strong> for large scale projects</p></li>
 <li><p>Designing and implimenting <strong>data structures</strong> to maximize efficiency.</p></li>
-<li><p>Fundumentals of <strong>Git</strong> as a software from the ground up.</p></li>
+<li><p>Fundamentals of <strong>Git</strong> as a software from the ground up.</p></li>
 </ul>
 
 
