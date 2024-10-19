@@ -91,9 +91,11 @@ Used **k-fold cross validation** to optimize C value in `svm.SVC` function found
 
 ### What I learned
 
-- **Logistic Regression**
+- **Logistic Regression**, including cross entropy loss, logit function, and interpretation.
 
-- **scikit-learn**
+- Further developed knowledge of the **scikit-learn** tool basket.
+
+- Soft-margin Support Vector Machines (**SVMs**), who introduces flexibility by allowing some margin violations (compare to hard-margin who don't).
 
 
 ## Diabetes Prediction
