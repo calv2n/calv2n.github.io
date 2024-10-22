@@ -10,7 +10,7 @@ format:
 
 ## Gradebook
 
-**January 1 - May 31**
+**January 2024 - June 2024**
 
 [https://www.github.com/gradebook-dev/](https://www.github.com/gradebook-dev/)
 
@@ -55,7 +55,7 @@ During my time with the Gradebook team, I was responsible for designing and deve
 
 **November 2023, February 2024**
 
-Source code available upon request.
+Code available upon request.
 
 **Description:** In my time as an undergraduate at Berkeley, I've had a few projects address the famous problem of email spam detection. In two seperate semesters, I created both a **Logistic Regression** and a **Support Vector Machine** model.
 
@@ -98,7 +98,9 @@ Used **k-fold cross validation** to optimize C value in `svm.SVC` function found
 
 ## Diabetes Prediction
 
-https://github.com/calv2n/diabetes-risk-model
+**December 2023**
+
+[https://github.com/calv2n/diabetes-risk-model](https://github.com/calv2n/diabetes-risk-model)
 
 **Description:** In this project, I gathered data about diabetes patients from [Kaggle](https://www.kaggle.com) and made accurate models for diagnosis given some common indicators. For my models, I wanted high accuracy and interpretability so we can see why the model chose what it chose. This is why I decided to use two seperate models: **Logistic Regression** and the **Random Forest Classifier**.
 
@@ -186,7 +188,7 @@ Model Training Accuracy: 1.0
 
 **July 2023**
 
-Source code available upon request.
+Code available upon request.
 
 Successfully implimented the following commands from the Git Version Control System:
 
@@ -246,4 +248,3 @@ This was my first large project when I came to Berkeley as an undergraduate.
 - Designing and implimenting **data structures** to maximize efficiency.
 
 - Fundamentals of **Git** as a software from the ground up.
-
