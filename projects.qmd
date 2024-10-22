@@ -39,7 +39,7 @@ Gradebook: An interface that abstracts the code into human understandable steps.
 
 An instructor (or reader) provides the web app with their course policy using the intuitive policy tab. Then, they can upload their course's Gradescope CSV to see data visualizations, statistics, a final grade table, and more.
 
-### What I Learned
+**What I Learned**
 
 During my time with the Gradebook team, I was responsible for designing and developing the "Dashboard" which displays graphics and statistics so the instructor can visually gauge their student's project.
 
@@ -57,9 +57,7 @@ During my time with the Gradebook team, I was responsible for designing and deve
 
 Source code available upon request.
 
-"All models are wrong, but some are useful" - *George Box*
-
-In my time as an undergraduate at Berkeley, I've had a few projects address the famous problem of email spam detection. In my first attempt at creating an accurate solution, I created a **logistic regression** model.
+**Description:** In my time as an undergraduate at Berkeley, I've had a few projects address the famous problem of email spam detection. In two seperate semesters, I created both a **Logistic Regression** and a **Support Vector Machine** model.
 
 ### Logistic Regression
 
@@ -89,7 +87,7 @@ My final **test accuracy** using this model was $\approx$ **87%**.
 
 Used **k-fold cross validation** to optimize C value in `svm.SVC` function found in the scikit-learn package in Python. Eventually landed on a **test accuracy** of **86%** using the `rbf` kernel with a C value of 325.
 
-### What I learned
+**What I Learned**
 
 - **Logistic Regression**, including cross entropy loss, logit function, and interpretation.
 
@@ -100,7 +98,89 @@ Used **k-fold cross validation** to optimize C value in `svm.SVC` function found
 
 ## Diabetes Prediction
 
+https://github.com/calv2n/diabetes-risk-model
 
+**Description:** In this project, I gathered data about diabetes patients from [Kaggle](https://www.kaggle.com) and made accurate models for diagnosis given some common indicators. For my models, I wanted high accuracy and interpretability so we can see why the model chose what it chose. This is why I decided to use two seperate models: **Logistic Regression** and the **Random Forest Classifier**.
+
+**EDA:** In the exploratory data analysis portion of building these models, I wanted to find the best way to visualize the best features for prediction. To do so, I created a heatmap of the absolute valued correlation between each feature and the diagnosis.
+
+```{python}
+#| eval: false
+
+sns.heatmap(df.corr()['Diabetes'].abs().sort_values().to_frame(), annot=True);
+```
+
+![](pages/diab-heat.png)
+
+From here, I decided to use all of 'Age', 'Gender', 'Polyuria', 'Polydipsia', 'sudden weight loss', 'weakness', 'Polyphagia', 'Genital thrush', 'visual blurring', 'Irritability', 'partial paresis', 'muscle stiffness', 'Alopecia', and 'Obesity' to make my predictions.
+
+### Logistic Regression
+
+```{python}
+#| eval: false
+from sklearn.linear_model import LogisticRegression
+
+model = LogisticRegression(max_iter=500)
+model.fit(X_train, y_train)
+train_prediction = model.predict(X_train)
+val_prediction = model.predict(X_val)
+
+train_accuracy = np.mean(train_prediction == y_train)
+val_accuracy = np.mean(val_prediction == y_val)
+
+print(f'Model training accuracy: {train_accuracy}')
+print(f'Model validation accuracy: {val_accuracy}')
+```
+
+```
+Model training accuracy: 0.9302884615384616 
+Model validation accuracy: 0.9038461538461539
+```
+
+**Highlights:**
+
+- \>90% validation accuracy using a human interpretable model.
+
+- Modified threshold to supremum such that the model's recall was 100% (important to minimize false negatives in many healthcare settings) while keeping validation accuracy > 85% (see [chunk 57](https://github.com/calv2n/diabetes-risk-model/blob/main/diabetes-risk-prediction.ipynb)).
+
+### Random Forest Classifier
+
+```{python}
+#| eval: false
+from sklearn.ensemble import RandomForestClassifier
+
+m2 = RandomForestClassifier(random_state=42)
+m2.fit(X_train, y_train)
+
+m2_val_prediction = m2.predict(X_val)
+
+print(f'Model Validation Accuracy: {(tp + tn) / (tp + tn + fp + fn)}')
+print(f'Model Precision: {tp / (tp + fp)}\nModel Recall: {tp / (tp + fn)}')
+```
+
+```
+Model Validation Accuracy: 0.9807692307692307
+Model Recall: 1.0
+Model Training Accuracy: 1.0
+```
+
+**Highlights:**
+
+- \>=99% validation accuracy, though not human interpretable.
+
+- Keeps highest possible validation accuracy while keeping recall at 100%.
+
+**What I Learned**
+
+- How to manipulate prediction threshold in code to maximize recall.
+
+- The importance of maximizing recall in a diagnosis setting. It's way more dangerous (and potentially life threatening) to wrongly tell someone that they don't have a disease when they do in reality.
+
+- The "tradeoff" of interpretability and accuracy in machine learning.
+
+- I used this project as an oppertunity to explore the implementation of random forest models. I learned how they worked in theory how they worked in [Data 102](https://data102.org) and from there thought they were very interesting.
+
+- Why (in practice) symptoms like constant urination and obesity are considered common symptoms of diabetes.
 
 ## Gitlet
 
@@ -157,7 +237,7 @@ initial commit
 
 - reset:  Restores all the files tracked by the given commit. Removes tracked files that are not present in that commit. Also moves the current branch’s head to that commit node.
 
-### What I Learned
+**What I Learned**
 
 This was my first large project when I came to Berkeley as an undergraduate. 
 

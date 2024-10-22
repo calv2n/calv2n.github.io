@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -145,21 +179,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#gradebook" id="toc-gradebook" class="nav-link active" data-scroll-target="#gradebook">Gradebook</a>
-  <ul class="collapse">
-  <li><a href="#what-i-learned" id="toc-what-i-learned" class="nav-link" data-scroll-target="#what-i-learned">What I Learned</a></li>
-  </ul></li>
+  <li><a href="#gradebook" id="toc-gradebook" class="nav-link active" data-scroll-target="#gradebook">Gradebook</a></li>
   <li><a href="#email-spam-detection" id="toc-email-spam-detection" class="nav-link" data-scroll-target="#email-spam-detection">Email Spam Detection</a>
   <ul class="collapse">
   <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a></li>
   <li><a href="#support-vector-machine-svm" id="toc-support-vector-machine-svm" class="nav-link" data-scroll-target="#support-vector-machine-svm">Support Vector Machine (SVM)</a></li>
-  <li><a href="#what-i-learned-1" id="toc-what-i-learned-1" class="nav-link" data-scroll-target="#what-i-learned-1">What I learned</a></li>
   </ul></li>
-  <li><a href="#diabetes-prediction" id="toc-diabetes-prediction" class="nav-link" data-scroll-target="#diabetes-prediction">Diabetes Prediction</a></li>
-  <li><a href="#gitlet" id="toc-gitlet" class="nav-link" data-scroll-target="#gitlet">Gitlet</a>
+  <li><a href="#diabetes-prediction" id="toc-diabetes-prediction" class="nav-link" data-scroll-target="#diabetes-prediction">Diabetes Prediction</a>
   <ul class="collapse">
-  <li><a href="#what-i-learned-2" id="toc-what-i-learned-2" class="nav-link" data-scroll-target="#what-i-learned-2">What I Learned</a></li>
+  <li><a href="#logistic-regression-1" id="toc-logistic-regression-1" class="nav-link" data-scroll-target="#logistic-regression-1">Logistic Regression</a></li>
+  <li><a href="#random-forest-classifier" id="toc-random-forest-classifier" class="nav-link" data-scroll-target="#random-forest-classifier">Random Forest Classifier</a></li>
   </ul></li>
+  <li><a href="#gitlet" id="toc-gitlet" class="nav-link" data-scroll-target="#gitlet">Gitlet</a></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://www.github.com/calv2n/calv2n.github.io"><i class="bi bi-github"></i>site repository</a></li></ul></div></nav>
     </div>
@@ -210,8 +241,7 @@ window.Quarto = {
 <p>Gradebook: An interface that abstracts the code into human understandable steps.</p>
 <p><img src="pages/gb.png" class="img-fluid"></p>
 <p>An instructor (or reader) provides the web app with their course policy using the intuitive policy tab. Then, they can upload their course’s Gradescope CSV to see data visualizations, statistics, a final grade table, and more.</p>
-<section id="what-i-learned" class="level3">
-<h3 class="anchored" data-anchor-id="what-i-learned">What I Learned</h3>
+<p><strong>What I Learned</strong></p>
 <p>During my time with the Gradebook team, I was responsible for designing and developing the “Dashboard” which displays graphics and statistics so the instructor can visually gauge their student’s project.</p>
 <ul>
 <li><p>Applying <strong>Data Visualization</strong> skills using <strong>Plotly</strong>.</p></li>
@@ -220,13 +250,11 @@ window.Quarto = {
 <li><p>Web development essentials (incl.&nbsp;<strong>HTML</strong>, <strong>CSS</strong>)</p></li>
 </ul>
 </section>
-</section>
 <section id="email-spam-detection" class="level2">
 <h2 class="anchored" data-anchor-id="email-spam-detection">Email Spam Detection</h2>
 <p><strong>November 2023, February 2024</strong></p>
 <p>Source code available upon request.</p>
-<p>“All models are wrong, but some are useful” - <em>George Box</em></p>
-<p>In my time as an undergraduate at Berkeley, I’ve had a few projects address the famous problem of email spam detection. In my first attempt at creating an accurate solution, I created a <strong>logistic regression</strong> model.</p>
+<p><strong>Description:</strong> In my time as an undergraduate at Berkeley, I’ve had a few projects address the famous problem of email spam detection. In two seperate semesters, I created both a <strong>Logistic Regression</strong> and a <strong>Support Vector Machine</strong> model.</p>
 <section id="logistic-regression" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h3>
 <p>To find the best features for my model, I used exploritory data analysis techniques, including visualization with a heatmap of the feature correlations, bivariate data analysis with data visualization, and filling NA values in features with appropriate aggregations (mean, median, or 0 depending on skew of univariate distribution).</p>
@@ -246,17 +274,78 @@ window.Quarto = {
 <section id="support-vector-machine-svm" class="level3">
 <h3 class="anchored" data-anchor-id="support-vector-machine-svm">Support Vector Machine (SVM)</h3>
 <p>Used <strong>k-fold cross validation</strong> to optimize C value in <code>svm.SVC</code> function found in the scikit-learn package in Python. Eventually landed on a <strong>test accuracy</strong> of <strong>86%</strong> using the <code>rbf</code> kernel with a C value of 325.</p>
-</section>
-<section id="what-i-learned-1" class="level3">
-<h3 class="anchored" data-anchor-id="what-i-learned-1">What I learned</h3>
+<p><strong>What I Learned</strong></p>
 <ul>
-<li><p><strong>Logistic Regression</strong></p></li>
-<li><p><strong>scikit-learn</strong></p></li>
+<li><p><strong>Logistic Regression</strong>, including cross entropy loss, logit function, and interpretation.</p></li>
+<li><p>Further developed knowledge of the <strong>scikit-learn</strong> tool basket.</p></li>
+<li><p>Soft-margin Support Vector Machines (<strong>SVMs</strong>), who introduces flexibility by allowing some margin violations (compare to hard-margin who don’t).</p></li>
 </ul>
 </section>
 </section>
 <section id="diabetes-prediction" class="level2">
 <h2 class="anchored" data-anchor-id="diabetes-prediction">Diabetes Prediction</h2>
+<p>https://github.com/calv2n/diabetes-risk-model</p>
+<p><strong>Description:</strong> In this project, I gathered data about diabetes patients from <a href="https://www.kaggle.com">Kaggle</a> and made accurate models for diagnosis given some common indicators. For my models, I wanted high accuracy and interpretability so we can see why the model chose what it chose. This is why I decided to use two seperate models: <strong>Logistic Regression</strong> and the <strong>Random Forest Classifier</strong>.</p>
+<p><strong>EDA:</strong> In the exploratory data analysis portion of building these models, I wanted to find the best way to visualize the best features for prediction. To do so, I created a heatmap of the absolute valued correlation between each feature and the diagnosis.</p>
+<div id="2b4492da" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.corr()[<span class="st">'Diabetes'</span>].<span class="bu">abs</span>().sort_values().to_frame(), annot<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="pages/diab-heat.png" class="img-fluid"></p>
+<p>From here, I decided to use all of ‘Age’, ‘Gender’, ‘Polyuria’, ‘Polydipsia’, ‘sudden weight loss’, ‘weakness’, ‘Polyphagia’, ‘Genital thrush’, ‘visual blurring’, ‘Irritability’, ‘partial paresis’, ‘muscle stiffness’, ‘Alopecia’, and ‘Obesity’ to make my predictions.</p>
+<section id="logistic-regression-1" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression-1">Logistic Regression</h3>
+<div id="a5160c16" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>train_prediction <span class="op">=</span> model.predict(X_train)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>val_prediction <span class="op">=</span> model.predict(X_val)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>train_accuracy <span class="op">=</span> np.mean(train_prediction <span class="op">==</span> y_train)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>val_accuracy <span class="op">=</span> np.mean(val_prediction <span class="op">==</span> y_val)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model training accuracy: </span><span class="sc">{</span>train_accuracy<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model validation accuracy: </span><span class="sc">{</span>val_accuracy<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Model training accuracy: 0.9302884615384616 
+Model validation accuracy: 0.9038461538461539</code></pre>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li><p>&gt;90% validation accuracy using a human interpretable model.</p></li>
+<li><p>Modified threshold to supremum such that the model’s recall was 100% (important to minimize false negatives in many healthcare settings) while keeping validation accuracy &gt; 85% (see <a href="https://github.com/calv2n/diabetes-risk-model/blob/main/diabetes-risk-prediction.ipynb">chunk 57</a>).</p></li>
+</ul>
+</section>
+<section id="random-forest-classifier" class="level3">
+<h3 class="anchored" data-anchor-id="random-forest-classifier">Random Forest Classifier</h3>
+<div id="e0210d00" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>m2.fit(X_train, y_train)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>m2_val_prediction <span class="op">=</span> m2.predict(X_val)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model Validation Accuracy: </span><span class="sc">{</span>(tp <span class="op">+</span> tn) <span class="op">/</span> (tp <span class="op">+</span> tn <span class="op">+</span> fp <span class="op">+</span> fn)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model Precision: </span><span class="sc">{</span>tp <span class="op">/</span> (tp <span class="op">+</span> fp)<span class="sc">}</span><span class="ch">\n</span><span class="ss">Model Recall: </span><span class="sc">{</span>tp <span class="op">/</span> (tp <span class="op">+</span> fn)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Model Validation Accuracy: 0.9807692307692307
+Model Recall: 1.0
+Model Training Accuracy: 1.0</code></pre>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li><p>&gt;=99% validation accuracy, though not human interpretable.</p></li>
+<li><p>Keeps highest possible validation accuracy while keeping recall at 100%.</p></li>
+</ul>
+<p><strong>What I Learned</strong></p>
+<ul>
+<li><p>How to manipulate prediction threshold in code to maximize recall.</p></li>
+<li><p>The importance of maximizing recall in a diagnosis setting. It’s way more dangerous (and potentially life threatening) to wrongly tell someone that they don’t have a disease when they do in reality.</p></li>
+<li><p>The “tradeoff” of interpretability and accuracy in machine learning.</p></li>
+<li><p>I used this project as an oppertunity to explore the implementation of random forest models. I learned how they worked in theory how they worked in <a href="https://data102.org">Data 102</a> and from there thought they were very interesting.</p></li>
+<li><p>Why (in practice) symptoms like constant urination and obesity are considered common symptoms of diabetes.</p></li>
+</ul>
+</section>
 </section>
 <section id="gitlet" class="level2">
 <h2 class="anchored" data-anchor-id="gitlet">Gitlet</h2>
@@ -298,8 +387,7 @@ initial commit</code></pre>
 <li><p>rm-branch: Deletes the branch with the given name. This only means to delete the pointer associated with the branch; it does not mean to delete all commits that were created under the branch, or anything like that.</p></li>
 <li><p>reset: Restores all the files tracked by the given commit. Removes tracked files that are not present in that commit. Also moves the current branch’s head to that commit node.</p></li>
 </ul>
-<section id="what-i-learned-2" class="level3">
-<h3 class="anchored" data-anchor-id="what-i-learned-2">What I Learned</h3>
+<p><strong>What I Learned</strong></p>
 <p>This was my first large project when I came to Berkeley as an undergraduate.</p>
 <ul>
 <li><p><strong>Java</strong> for large scale projects</p></li>
@@ -308,7 +396,6 @@ initial commit</code></pre>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
