@@ -3,7 +3,7 @@ title: "Calvin Carter"
 subtitle: "MA Statistics Student at UC Berkeley"
 ---
 
-Graduate Student Instructor at the UC Berkeley Statistics Department. Currently seeking internship opportunities in Data Science.
+GSI in the Statistics Department at UC Berkeley. Currently seeking internship opportunities in Data Science.
 
 [More about me here <i class="bi bi-arrow-up-right-circle-fill"></i> ](about.qmd)
 

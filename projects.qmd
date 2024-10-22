@@ -168,13 +168,19 @@ Model Training Accuracy: 1.0
 
 - \>=99% validation accuracy, though not human interpretable.
 
-- 
+- Keeps highest possible validation accuracy while keeping recall at 100%.
 
 **What I Learned**
 
-- 
+- How to manipulate prediction threshold in code to maximize recall.
 
-- 
+- The importance of maximizing recall in a diagnosis setting. It's way more dangerous (and potentially life threatening) to wrongly tell someone that they don't have a disease when they do in reality.
+
+- The "tradeoff" of interpretability and accuracy in machine learning.
+
+- I used this project as an oppertunity to explore the implementation of random forest models. I learned how they worked in theory how they worked in [Data 102](https://data102.org) and from there thought they were very interesting.
+
+- Why (in practice) symptoms like constant urination and obesity are considered common symptoms of diabetes.
 
 ## Gitlet
 
