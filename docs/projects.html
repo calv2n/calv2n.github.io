@@ -218,7 +218,7 @@ window.Quarto = {
 
 <section id="gradebook" class="level2">
 <h2 class="anchored" data-anchor-id="gradebook">Gradebook</h2>
-<p><strong>January 1 - May 31</strong></p>
+<p><strong>January 2024 - June 2024</strong></p>
 <p><a href="https://www.github.com/gradebook-dev/">https://www.github.com/gradebook-dev/</a></p>
 <p><strong>Description:</strong> Gradebook is an open-source R package and Web Application that provides a consistent interface for instructors to quickly and more accurately calculate course grades.</p>
 <p><strong>The Problem:</strong> Many instructors (especially at Berkeley) opt to use <a href="https://www.gradescope.com">Gradescope</a> for students to upload their submissions to course assignments, as it provides an industry leading interface to instructors and readers for grading. However, Gradescope lacks functionality of implimenting a <em>course policy</em>. An example of a course policy (<a href="http://stat88.org/syllabus/">Data 88S</a>):</p>
@@ -253,7 +253,7 @@ window.Quarto = {
 <section id="email-spam-detection" class="level2">
 <h2 class="anchored" data-anchor-id="email-spam-detection">Email Spam Detection</h2>
 <p><strong>November 2023, February 2024</strong></p>
-<p>Source code available upon request.</p>
+<p>Code available upon request.</p>
 <p><strong>Description:</strong> In my time as an undergraduate at Berkeley, I’ve had a few projects address the famous problem of email spam detection. In two seperate semesters, I created both a <strong>Logistic Regression</strong> and a <strong>Support Vector Machine</strong> model.</p>
 <section id="logistic-regression" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h3>
@@ -284,17 +284,18 @@ window.Quarto = {
 </section>
 <section id="diabetes-prediction" class="level2">
 <h2 class="anchored" data-anchor-id="diabetes-prediction">Diabetes Prediction</h2>
-<p>https://github.com/calv2n/diabetes-risk-model</p>
+<p><strong>December 2023</strong></p>
+<p><a href="https://github.com/calv2n/diabetes-risk-model">https://github.com/calv2n/diabetes-risk-model</a></p>
 <p><strong>Description:</strong> In this project, I gathered data about diabetes patients from <a href="https://www.kaggle.com">Kaggle</a> and made accurate models for diagnosis given some common indicators. For my models, I wanted high accuracy and interpretability so we can see why the model chose what it chose. This is why I decided to use two seperate models: <strong>Logistic Regression</strong> and the <strong>Random Forest Classifier</strong>.</p>
 <p><strong>EDA:</strong> In the exploratory data analysis portion of building these models, I wanted to find the best way to visualize the best features for prediction. To do so, I created a heatmap of the absolute valued correlation between each feature and the diagnosis.</p>
-<div id="6f2eb634" class="cell" data-execution_count="1">
+<div id="66143f24" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.corr()[<span class="st">'Diabetes'</span>].<span class="bu">abs</span>().sort_values().to_frame(), annot<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="pages/diab-heat.png" class="img-fluid"></p>
 <p>From here, I decided to use all of ‘Age’, ‘Gender’, ‘Polyuria’, ‘Polydipsia’, ‘sudden weight loss’, ‘weakness’, ‘Polyphagia’, ‘Genital thrush’, ‘visual blurring’, ‘Irritability’, ‘partial paresis’, ‘muscle stiffness’, ‘Alopecia’, and ‘Obesity’ to make my predictions.</p>
 <section id="logistic-regression-1" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression-1">Logistic Regression</h3>
-<div id="35d95510" class="cell" data-execution_count="2">
+<div id="e442de40" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">500</span>)</span>
@@ -318,7 +319,7 @@ Model validation accuracy: 0.9038461538461539</code></pre>
 </section>
 <section id="random-forest-classifier" class="level3">
 <h3 class="anchored" data-anchor-id="random-forest-classifier">Random Forest Classifier</h3>
-<div id="3df04d7e" class="cell" data-execution_count="3">
+<div id="5b5faff2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
@@ -350,7 +351,7 @@ Model Training Accuracy: 1.0</code></pre>
 <section id="gitlet" class="level2">
 <h2 class="anchored" data-anchor-id="gitlet">Gitlet</h2>
 <p><strong>July 2023</strong></p>
-<p>Source code available upon request.</p>
+<p>Code available upon request.</p>
 <p>Successfully implimented the following commands from the Git Version Control System:</p>
 <ul>
 <li><p>init: Creates a new Gitlet version-control system in the current directory.</p></li>
