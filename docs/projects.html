@@ -287,14 +287,14 @@ window.Quarto = {
 <p>https://github.com/calv2n/diabetes-risk-model</p>
 <p><strong>Description:</strong> In this project, I gathered data about diabetes patients from <a href="https://www.kaggle.com">Kaggle</a> and made accurate models for diagnosis given some common indicators. For my models, I wanted high accuracy and interpretability so we can see why the model chose what it chose. This is why I decided to use two seperate models: <strong>Logistic Regression</strong> and the <strong>Random Forest Classifier</strong>.</p>
 <p><strong>EDA:</strong> In the exploratory data analysis portion of building these models, I wanted to find the best way to visualize the best features for prediction. To do so, I created a heatmap of the absolute valued correlation between each feature and the diagnosis.</p>
-<div id="2b4492da" class="cell" data-execution_count="1">
+<div id="6f2eb634" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.corr()[<span class="st">'Diabetes'</span>].<span class="bu">abs</span>().sort_values().to_frame(), annot<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="pages/diab-heat.png" class="img-fluid"></p>
 <p>From here, I decided to use all of ‘Age’, ‘Gender’, ‘Polyuria’, ‘Polydipsia’, ‘sudden weight loss’, ‘weakness’, ‘Polyphagia’, ‘Genital thrush’, ‘visual blurring’, ‘Irritability’, ‘partial paresis’, ‘muscle stiffness’, ‘Alopecia’, and ‘Obesity’ to make my predictions.</p>
 <section id="logistic-regression-1" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression-1">Logistic Regression</h3>
-<div id="a5160c16" class="cell" data-execution_count="2">
+<div id="35d95510" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">500</span>)</span>
@@ -318,7 +318,7 @@ Model validation accuracy: 0.9038461538461539</code></pre>
 </section>
 <section id="random-forest-classifier" class="level3">
 <h3 class="anchored" data-anchor-id="random-forest-classifier">Random Forest Classifier</h3>
-<div id="e0210d00" class="cell" data-execution_count="3">
+<div id="3df04d7e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
