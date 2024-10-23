@@ -75,7 +75,7 @@ I also used **feature engineering** to get some of the most effective features f
 
 *`*` indicates featured engineering used.*
 
-![](spam-email-logistic-coeff-importance.png)
+![](pages/spam-email-logistic-coeff-importance.png)
 
 Resulting ROC Curve:
 
