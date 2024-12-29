@@ -282,7 +282,7 @@ Model validation accuracy: 0.9038461538461539
 
 - Modified threshold to supremum such that the model's recall was 100% (important to minimize false negatives in many healthcare settings) while keeping validation accuracy > 85% (see [chunk 57](https://github.com/calv2n/diabetes-risk-model/blob/main/diabetes-risk-prediction.ipynb)).
 
-**Random Forest Classifier
+### Random Forest Classifier
 
 ```{python}
 #| eval: false
