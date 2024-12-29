@@ -26,7 +26,7 @@ Calculate the envelope and squeeze functions at abscicca points, as well as a sa
 
 Draw some $w \sim \textnormal{Uniform}(0, 1)$ and $X^{\star} \sim s_k$
 
-if $w \leq \exp(h(X^{\star}) - u(X^{\star}))$ accept $X^{\star}$ and return to begining of while loop.
+if $w \leq \exp(l(X^{\star}) - u(X^{\star}))$ accept $X^{\star}$ and return to begining of while loop.
 
 otherwise, calculate the log pdf and derivative log pdf values of $X^{\star}$, $h(X^{\star})$, and $h^\prime(X^{\star})$.
 
