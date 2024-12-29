@@ -179,7 +179,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#gradebook" id="toc-gradebook" class="nav-link active" data-scroll-target="#gradebook">Gradebook</a></li>
+  <li><a href="#adaptive-rejection-sampler" id="toc-adaptive-rejection-sampler" class="nav-link active" data-scroll-target="#adaptive-rejection-sampler">Adaptive Rejection Sampler</a></li>
+  <li><a href="#gradebook" id="toc-gradebook" class="nav-link" data-scroll-target="#gradebook">Gradebook</a></li>
   <li><a href="#email-spam-detection" id="toc-email-spam-detection" class="nav-link" data-scroll-target="#email-spam-detection">Email Spam Detection</a>
   <ul class="collapse">
   <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a></li>
@@ -188,7 +189,6 @@ window.Quarto = {
   <li><a href="#diabetes-prediction" id="toc-diabetes-prediction" class="nav-link" data-scroll-target="#diabetes-prediction">Diabetes Prediction</a>
   <ul class="collapse">
   <li><a href="#logistic-regression-1" id="toc-logistic-regression-1" class="nav-link" data-scroll-target="#logistic-regression-1">Logistic Regression</a></li>
-  <li><a href="#random-forest-classifier" id="toc-random-forest-classifier" class="nav-link" data-scroll-target="#random-forest-classifier">Random Forest Classifier</a></li>
   </ul></li>
   <li><a href="#gitlet" id="toc-gitlet" class="nav-link" data-scroll-target="#gitlet">Gitlet</a></li>
   </ul>
@@ -216,6 +216,111 @@ window.Quarto = {
 </header>
 
 
+<section id="adaptive-rejection-sampler" class="level2">
+<h2 class="anchored" data-anchor-id="adaptive-rejection-sampler">Adaptive Rejection Sampler</h2>
+<p><strong>November 2024 - December 2024</strong></p>
+<p>Code available upon request.</p>
+<p><strong>Description:</strong> Adaptive rejection sampling is a computationally efficient algorithm that allows sampling of log-concave probability density functions. Like the name suggests, ARS is relatively similar to rejection sampling except we can manipulate the log-concavity to create “squeeze” and “envelope” linear functions that limit both the number of samples we have to throw away and the number of evaluations of our probability density function. This can be particularly useful in cases such as gibbs sampling where evaluation of the pdf can be expensive or when sampling a truncated distribution.</p>
+<p><strong>Algorithm:</strong></p>
+<p>Initialize some abscissa <span class="math inline">\(T_k\)</span>, and calculate breakpoints <span class="math inline">\(z_k\)</span>, where <span class="math inline">\(z_0\)</span> is the lower bound of the domain <span class="math inline">\(D\)</span>¸</p>
+<p>while number of samples desired not reached:</p>
+<p>Calculate the envelope and squeeze functions at abscicca points, as well as a sample function <span class="math inline">\(s_k\)</span>, which is the exponentiated and normalized envelope.</p>
+<p>Draw some <span class="math inline">\(w \sim \textnormal{Uniform}(0, 1)\)</span> and <span class="math inline">\(X^{\star} \sim s_k\)</span></p>
+<p>if <span class="math inline">\(w \leq \exp(h(X^{\star}) - u(X^{\star}))\)</span> accept <span class="math inline">\(X^{\star}\)</span> and return to begining of while loop.</p>
+<p>otherwise, calculate the log pdf and derivative log pdf values of <span class="math inline">\(X^{\star}\)</span>, <span class="math inline">\(h(X^{\star})\)</span>, and <span class="math inline">\(h^\prime(X^{\star})\)</span>.</p>
+<p>if <span class="math inline">\(w \leq \exp(h^\prime(X^{\star}) - u(X^{\star})\)</span> accept <span class="math inline">\(X^{\star}\)</span></p>
+<p>add <span class="math inline">\(X^{\star}\)</span> to the abscissa</p>
+<p><strong>Example:</strong></p>
+<p>How the algorithm works with an unnormalized normal density:</p>
+<div id="72245237" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e8adb446" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> alpha_normal_pdf(x, mu, var):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp((<span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>np.sqrt(var)) ) <span class="op">*</span> (x <span class="op">-</span> mu) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_h_l_u(T, hvals, h, hprimes, z_ext):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    x_vals <span class="op">=</span> np.linspace(z_ext[<span class="dv">0</span>], z_ext[<span class="op">-</span><span class="dv">1</span>], <span class="dv">500</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># envelope</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> ars.utils.get_u(T, hvals, hprimes, z_ext)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># squeeze</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> ars.utils.get_l(T, hvals)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    h_y <span class="op">=</span> np.array([h(x) <span class="cf">for</span> x <span class="kw">in</span> x_vals])</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    u_y <span class="op">=</span> np.array([u(x) <span class="cf">for</span> x <span class="kw">in</span> x_vals])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    l_y <span class="op">=</span> np.array([l(x) <span class="cf">for</span> x <span class="kw">in</span> x_vals])</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    plt.plot(x_vals, h_y, label<span class="op">=</span><span class="st">'log density'</span>, color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    plt.plot(x_vals, u_y, label<span class="op">=</span><span class="st">'envelope'</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    plt.plot(x_vals, l_y, label<span class="op">=</span><span class="st">'squeeze'</span>, color<span class="op">=</span><span class="st">'green'</span>, linestyle<span class="op">=</span><span class="st">':'</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    plt.scatter(T, hvals, color<span class="op">=</span><span class="st">'black'</span>, label<span class="op">=</span><span class="st">'abscissa'</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Function values'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'h(x), u(x), and l(x)'</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here we will initialize the abscissa as -2 and 2. The z, and hprime calculations are all available in the source code upon request. Here is a visual representation of the squeeze and envelope functions that provides some intuition.</p>
+<div id="1f9c85bd" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>z_ext <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="kw">lambda</span> x: np.log(alpha_normal_pdf(x, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>hvals <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">2</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>hprimes <span class="op">=</span> [<span class="dv">2</span>, <span class="op">-</span><span class="dv">2</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plot_h_l_u(T, hvals, h, hprimes, z_ext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="pages/ars-demo1.png" class="img-fluid"></p>
+<p>With another point in the abscissa (might occur if we rejected some <span class="math inline">\(X^\star\)</span> 0 during the initial squeeze test):</p>
+<div id="06483d75" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="kw">lambda</span> x: np.log(alpha_normal_pdf(x, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>hvals <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>hprimes <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>z_ext <span class="op">=</span> ars.utils.get_z_ext(T, hvals, hprimes, <span class="dv">2</span>, <span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plot_h_l_u(T, hvals, h, hprimes, z_ext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="pages/ars-demo2.png" class="img-fluid"></p>
+<p>Now suppose we wanted to sample some truncated normal distribution between -2 and 0. We could simply use our “ars” method to create and plot 3000 samples:</p>
+<div id="39449556" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> truncnorm</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>std_normal_pdf <span class="op">=</span> <span class="kw">lambda</span> x: alpha_normal_pdf(x, mu<span class="op">=</span><span class="dv">0</span>, var<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Domain</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> (<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sampler <span class="op">=</span> ars.Ars(pdf<span class="op">=</span>std_normal_pdf, D<span class="op">=</span>D)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> sampler.ars(<span class="dv">3000</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Truncated Normal PDF from scipy for overlay</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> (D[<span class="dv">0</span>] <span class="op">-</span> <span class="dv">0</span>) <span class="op">/</span> <span class="dv">1</span>, (D[<span class="dv">1</span>] <span class="op">-</span> <span class="dv">0</span>) <span class="op">/</span> <span class="dv">1</span>  <span class="co"># Normalized bounds for standard normal</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>x_vals <span class="op">=</span> np.linspace(D[<span class="dv">0</span>], D[<span class="dv">1</span>], <span class="dv">500</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>truncated_pdf <span class="op">=</span> truncnorm.pdf(x_vals, a, b, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.hist(samples, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'ARS Samples'</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, truncated_pdf, <span class="st">'r-'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Truncated Normal PDF"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Histogram of ARS Samples with Truncated Normal Overlay"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Density"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="pages/ars-hist.png" class="img-fluid"></p>
+<p><strong>What I Learned</strong> t - Enhanced teamwork and collaboration by effectively utilizing Git and GitHub for version control.</p>
+<ul>
+<li><p>Developed a comprehensive Python package, incorporating well-structured modules, clear documentation, and robust functionality to address specific programming needs or streamline workflows.</p></li>
+<li><p>Improved understanding of simulation, using Inverse Transform Sampling to sample from the normalized exponential envelope function.</p></li>
+</ul>
+</section>
 <section id="gradebook" class="level2">
 <h2 class="anchored" data-anchor-id="gradebook">Gradebook</h2>
 <p><strong>January 2024 - June 2024</strong></p>
@@ -266,7 +371,7 @@ window.Quarto = {
 <li><p>Proportion of capital letters in subject line <strong>*</strong>.</p></li>
 </ul>
 <p><em><code>*</code> indicates featured engineering used.</em></p>
-<p><img src="spam-email-logistic-coeff-importance.png" class="img-fluid"></p>
+<p><img src="pages/spam-email-logistic-coeff-importance.png" class="img-fluid"></p>
 <p>Resulting ROC Curve:</p>
 <p><img src="pages/roc-email-spam-logistic.png" class="img-fluid"></p>
 <p>My final <strong>test accuracy</strong> using this model was <span class="math inline">\(\approx\)</span> <strong>87%</strong>.</p>
@@ -288,26 +393,26 @@ window.Quarto = {
 <p><a href="https://github.com/calv2n/diabetes-risk-model">https://github.com/calv2n/diabetes-risk-model</a></p>
 <p><strong>Description:</strong> In this project, I gathered data about diabetes patients from <a href="https://www.kaggle.com">Kaggle</a> and made accurate models for diagnosis given some common indicators. For my models, I wanted high accuracy and interpretability so we can see why the model chose what it chose. This is why I decided to use two seperate models: <strong>Logistic Regression</strong> and the <strong>Random Forest Classifier</strong>.</p>
 <p><strong>EDA:</strong> In the exploratory data analysis portion of building these models, I wanted to find the best way to visualize the best features for prediction. To do so, I created a heatmap of the absolute valued correlation between each feature and the diagnosis.</p>
-<div id="66143f24" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.corr()[<span class="st">'Diabetes'</span>].<span class="bu">abs</span>().sort_values().to_frame(), annot<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="39f6d65c" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.corr()[<span class="st">'Diabetes'</span>].<span class="bu">abs</span>().sort_values().to_frame(), annot<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="pages/diab-heat.png" class="img-fluid"></p>
 <p>From here, I decided to use all of ‘Age’, ‘Gender’, ‘Polyuria’, ‘Polydipsia’, ‘sudden weight loss’, ‘weakness’, ‘Polyphagia’, ‘Genital thrush’, ‘visual blurring’, ‘Irritability’, ‘partial paresis’, ‘muscle stiffness’, ‘Alopecia’, and ‘Obesity’ to make my predictions.</p>
 <section id="logistic-regression-1" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression-1">Logistic Regression</h3>
-<div id="e442de40" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">500</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>train_prediction <span class="op">=</span> model.predict(X_train)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>val_prediction <span class="op">=</span> model.predict(X_val)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>train_accuracy <span class="op">=</span> np.mean(train_prediction <span class="op">==</span> y_train)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>val_accuracy <span class="op">=</span> np.mean(val_prediction <span class="op">==</span> y_val)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model training accuracy: </span><span class="sc">{</span>train_accuracy<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model validation accuracy: </span><span class="sc">{</span>val_accuracy<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9f110482" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>train_prediction <span class="op">=</span> model.predict(X_train)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>val_prediction <span class="op">=</span> model.predict(X_val)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>train_accuracy <span class="op">=</span> np.mean(train_prediction <span class="op">==</span> y_train)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>val_accuracy <span class="op">=</span> np.mean(val_prediction <span class="op">==</span> y_val)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model training accuracy: </span><span class="sc">{</span>train_accuracy<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model validation accuracy: </span><span class="sc">{</span>val_accuracy<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>Model training accuracy: 0.9302884615384616 
 Model validation accuracy: 0.9038461538461539</code></pre>
@@ -316,19 +421,17 @@ Model validation accuracy: 0.9038461538461539</code></pre>
 <li><p>&gt;90% validation accuracy using a human interpretable model.</p></li>
 <li><p>Modified threshold to supremum such that the model’s recall was 100% (important to minimize false negatives in many healthcare settings) while keeping validation accuracy &gt; 85% (see <a href="https://github.com/calv2n/diabetes-risk-model/blob/main/diabetes-risk-prediction.ipynb">chunk 57</a>).</p></li>
 </ul>
-</section>
-<section id="random-forest-classifier" class="level3">
-<h3 class="anchored" data-anchor-id="random-forest-classifier">Random Forest Classifier</h3>
-<div id="5b5faff2" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>m2.fit(X_train, y_train)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>m2_val_prediction <span class="op">=</span> m2.predict(X_val)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model Validation Accuracy: </span><span class="sc">{</span>(tp <span class="op">+</span> tn) <span class="op">/</span> (tp <span class="op">+</span> tn <span class="op">+</span> fp <span class="op">+</span> fn)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model Precision: </span><span class="sc">{</span>tp <span class="op">/</span> (tp <span class="op">+</span> fp)<span class="sc">}</span><span class="ch">\n</span><span class="ss">Model Recall: </span><span class="sc">{</span>tp <span class="op">/</span> (tp <span class="op">+</span> fn)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>**Random Forest Classifier</p>
+<div id="37e1df6d" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>m2.fit(X_train, y_train)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>m2_val_prediction <span class="op">=</span> m2.predict(X_val)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model Validation Accuracy: </span><span class="sc">{</span>(tp <span class="op">+</span> tn) <span class="op">/</span> (tp <span class="op">+</span> tn <span class="op">+</span> fp <span class="op">+</span> fn)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Model Precision: </span><span class="sc">{</span>tp <span class="op">/</span> (tp <span class="op">+</span> fp)<span class="sc">}</span><span class="ch">\n</span><span class="ss">Model Recall: </span><span class="sc">{</span>tp <span class="op">/</span> (tp <span class="op">+</span> fn)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>Model Validation Accuracy: 0.9807692307692307
 Model Recall: 1.0
@@ -352,7 +455,7 @@ Model Training Accuracy: 1.0</code></pre>
 <h2 class="anchored" data-anchor-id="gitlet">Gitlet</h2>
 <p><strong>July 2023</strong></p>
 <p>Code available upon request.</p>
-<p>Successfully implimented the following commands from the Git Version Control System:</p>
+<p>Successfully Implemented the following commands from the Git Version Control System:</p>
 <ul>
 <li><p>init: Creates a new Gitlet version-control system in the current directory.</p></li>
 <li><p>add: Adds a copy of the file as it currently exists to the <em>staging area</em>.</p></li>
