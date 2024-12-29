@@ -189,6 +189,7 @@ window.Quarto = {
   <li><a href="#diabetes-prediction" id="toc-diabetes-prediction" class="nav-link" data-scroll-target="#diabetes-prediction">Diabetes Prediction</a>
   <ul class="collapse">
   <li><a href="#logistic-regression-1" id="toc-logistic-regression-1" class="nav-link" data-scroll-target="#logistic-regression-1">Logistic Regression</a></li>
+  <li><a href="#random-forest-classifier" id="toc-random-forest-classifier" class="nav-link" data-scroll-target="#random-forest-classifier">Random Forest Classifier</a></li>
   </ul></li>
   <li><a href="#gitlet" id="toc-gitlet" class="nav-link" data-scroll-target="#gitlet">Gitlet</a></li>
   </ul>
@@ -232,13 +233,13 @@ window.Quarto = {
 <p>add <span class="math inline">\(X^{\star}\)</span> to the abscissa</p>
 <p><strong>Example:</strong></p>
 <p>How the algorithm works with an unnormalized normal density:</p>
-<div id="4c0e40b9" class="cell" data-execution_count="1">
+<div id="4809d986" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="692a9b73" class="cell" data-execution_count="2">
+<div id="6e4bde65" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> alpha_normal_pdf(x, mu, var):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp((<span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>np.sqrt(var)) ) <span class="op">*</span> (x <span class="op">-</span> mu) <span class="op">**</span> <span class="dv">2</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -266,7 +267,7 @@ window.Quarto = {
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here we will initialize the abscissa as -2 and 2. The z, and hprime calculations are all available in the source code upon request. Here is a visual representation of the squeeze and envelope functions that provides some intuition.</p>
-<div id="f2b387e5" class="cell" data-execution_count="3">
+<div id="049e8d5f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>z_ext <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="kw">lambda</span> x: np.log(alpha_normal_pdf(x, <span class="dv">0</span>, <span class="dv">1</span>))</span>
@@ -276,7 +277,7 @@ window.Quarto = {
 </div>
 <p><img src="pages/ars-demo1.png" class="img-fluid"></p>
 <p>With another point in the abscissa (might occur if we rejected some <span class="math inline">\(X^\star=0\)</span> during the initial squeeze test):</p>
-<div id="64d84e9f" class="cell" data-execution_count="4">
+<div id="c066c610" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="kw">lambda</span> x: np.log(alpha_normal_pdf(x, <span class="dv">0</span>, <span class="dv">1</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>hvals <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>]</span>
@@ -286,7 +287,7 @@ window.Quarto = {
 </div>
 <p><img src="pages/ars-demo2.png" class="img-fluid"></p>
 <p>Now suppose we wanted to sample some truncated normal distribution between -2 and 0. We could simply use our <code>ars</code> method to create and plot 3000 samples:</p>
-<div id="dbf1b749" class="cell" data-execution_count="5">
+<div id="d147804e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> truncnorm</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>std_normal_pdf <span class="op">=</span> <span class="kw">lambda</span> x: alpha_normal_pdf(x, mu<span class="op">=</span><span class="dv">0</span>, var<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Domain</span></span>
@@ -394,14 +395,14 @@ window.Quarto = {
 <p><a href="https://github.com/calv2n/diabetes-risk-model">https://github.com/calv2n/diabetes-risk-model</a></p>
 <p><strong>Description:</strong> In this project, I gathered data about diabetes patients from <a href="https://www.kaggle.com">Kaggle</a> and made accurate models for diagnosis given some common indicators. For my models, I wanted high accuracy and interpretability so we can see why the model chose what it chose. This is why I decided to use two seperate models: <strong>Logistic Regression</strong> and the <strong>Random Forest Classifier</strong>.</p>
 <p><strong>EDA:</strong> In the exploratory data analysis portion of building these models, I wanted to find the best way to visualize the best features for prediction. To do so, I created a heatmap of the absolute valued correlation between each feature and the diagnosis.</p>
-<div id="32b02938" class="cell" data-execution_count="6">
+<div id="42c427a1" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.corr()[<span class="st">'Diabetes'</span>].<span class="bu">abs</span>().sort_values().to_frame(), annot<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="pages/diab-heat.png" class="img-fluid"></p>
 <p>From here, I decided to use all of ‘Age’, ‘Gender’, ‘Polyuria’, ‘Polydipsia’, ‘sudden weight loss’, ‘weakness’, ‘Polyphagia’, ‘Genital thrush’, ‘visual blurring’, ‘Irritability’, ‘partial paresis’, ‘muscle stiffness’, ‘Alopecia’, and ‘Obesity’ to make my predictions.</p>
 <section id="logistic-regression-1" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression-1">Logistic Regression</h3>
-<div id="de9fc2cc" class="cell" data-execution_count="7">
+<div id="4a25da50" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">500</span>)</span>
@@ -422,8 +423,10 @@ Model validation accuracy: 0.9038461538461539</code></pre>
 <li><p>&gt;90% validation accuracy using a human interpretable model.</p></li>
 <li><p>Modified threshold to supremum such that the model’s recall was 100% (important to minimize false negatives in many healthcare settings) while keeping validation accuracy &gt; 85% (see <a href="https://github.com/calv2n/diabetes-risk-model/blob/main/diabetes-risk-prediction.ipynb">chunk 57</a>).</p></li>
 </ul>
-<p>**Random Forest Classifier</p>
-<div id="81ac5554" class="cell" data-execution_count="8">
+</section>
+<section id="random-forest-classifier" class="level3">
+<h3 class="anchored" data-anchor-id="random-forest-classifier">Random Forest Classifier</h3>
+<div id="ddde99c2" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
