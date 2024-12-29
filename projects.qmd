@@ -30,7 +30,7 @@ if $w \leq \exp(h(X^{\star}) - u(X^{\star}))$ accept $X^{\star}$ and return to b
 
 otherwise, calculate the log pdf and derivative log pdf values of $X^{\star}$, $h(X^{\star})$, and $h^\prime(X^{\star})$.
 
-if $w \leq \exp(h^\prime(X^{\star}) - u(X^{\star})$ accept $X^{\star}$
+if $w \leq \exp(h^\prime(X^{\star}) - u(X^{\star}))$ accept $X^{\star}$
 
 add $X^{\star}$ to the abscissa
 
@@ -89,7 +89,7 @@ plot_h_l_u(T, hvals, h, hprimes, z_ext)
 
 ![](pages/ars-demo1.png)
 
-With another point in the abscissa (might occur if we rejected some $X^\star$ 0 during the initial squeeze test):
+With another point in the abscissa (might occur if we rejected some $X^\star=0$ during the initial squeeze test):
 
 ```{python}
 #| eval: false
@@ -103,7 +103,7 @@ plot_h_l_u(T, hvals, h, hprimes, z_ext)
 
 ![](pages/ars-demo2.png)
 
-Now suppose we wanted to sample some truncated normal distribution between -2 and 0. We could simply use our "ars" method to create and plot 3000 samples:
+Now suppose we wanted to sample some truncated normal distribution between -2 and 0. We could simply use our `ars` method to create and plot 3000 samples:
 
 ```{python}
 #| eval: false
@@ -138,7 +138,7 @@ plt.show()
 ![](pages/ars-hist.png)
 
 **What I Learned**
-t
+
 - Enhanced teamwork and collaboration by effectively utilizing Git and GitHub for version control.
 
 - Developed a comprehensive Python package, incorporating well-structured modules, clear documentation, and robust functionality to address specific programming needs or streamline workflows.
