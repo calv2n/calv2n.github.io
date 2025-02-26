@@ -8,7 +8,7 @@ format:
         icon: github
 ---
 
-The most recent copy of my **resume** [can be found here.](https://drive.google.com/file/d/1ly7BKmRIAY2xY3gB_7vOu8AMLnfIber3/view)
+The most recent copy of my **resume** [can be found here.](https://drive.google.com/file/d/18m9deW-zvAJwQ32xp2XWKmBaR3QZ3U9W/view?usp=sharing)
 
 A portfolio of my **Data Science projects** [can be found here.](projects.qmd)
 

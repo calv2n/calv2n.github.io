@@ -14,7 +14,7 @@ format:
 
 Code available upon request.
 
-**Description:** Adaptive rejection sampling is a computationally efficient algorithm that allows sampling of log-concave probability density functions. Like the name suggests, ARS is relatively similar to rejection sampling except we can manipulate the log-concavity to create "squeeze" and "envelope" linear functions that limit both the number of samples we have to throw away and the number of evaluations of our probability density function. This can be particularly useful in cases such as gibbs sampling where evaluation of the pdf can be expensive or when sampling a truncated distribution.
+**Description:** Adaptive rejection sampling is a computationally efficient algorithm that allows sampling of log-concave probability density functions. Like the name suggests, ARS is relatively similar to rejection sampling except we can manipulate the log-concavity to create "squeeze" and "envelope" linear functions that limit both the number of samples we have to throw away and the number of evaluations of our probability density function. This can be particularly useful in cases where evaluation of the pdf is expensive and when sampling a truncated distribution.
 
 **Algorithm:**
 
