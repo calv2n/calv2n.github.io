@@ -10,104 +10,18 @@ format:
 
 The most recent copy of my **resume** [can be found here.](https://drive.google.com/file/d/18m9deW-zvAJwQ32xp2XWKmBaR3QZ3U9W/view?usp=sharing)
 
-A portfolio of my **Data Science projects** [can be found here.](projects.qmd)
-
 Calvin Carter is a passionate Data Scientist with extensive project experience using Python, R, and PostgreSQL. His current career goal is an internship in Data Science or Data Analytics while he completes his Masters degree in Statistics at UC Berkeley.
 
-## Education
+## More About Me
 
-:::{#education1 style="line-height: 0.8;"}
-**University of California, Berkeley** &nbsp;
-<img src="pages/cal-logo.png" alt="LinkedIn logo" width="28" height="28">
+In my free time, I enjoy learning about world history & geography, hanging out with friends and family, and listening to & collecting music by the album (my favorite genres are Hip-Hop, R&B, Art Pop, and Alternative Rock). I also occasionally enjoy DIY projects, especially if they're software/computer-based.
 
-Master of Arts, Statistics *with an emphasis in machine learning*
+Some fun facts about me:
 
-Expected December, 2025
-:::
+- I've wanted to be a Data Scientist ever since I took Statistics in my junior year of high school, even though I only signed up for the class to be among friends. Who knew!
 
-:::{#education2 style="line-height: 0.8;"}
-**University of California, Berkeley** &nbsp;
-<img src="pages/cal-logo.png" alt="LinkedIn logo" width="28" height="28">
+- I was a 3rd year transfer to UC Berkeley (from Cosumnes River College in Sacramento).
 
-Bachelor of Arts, Data Science *with an emphasis in Applied Mathematics and Modeling*
+- I lived in New Mexico from ages 4-14 years old, then I moved to Northern California.
 
-May 2024
-:::
-
-**Other:**
-Certification in "Mastering Data Analysis in Excel", **Duke University** &nbsp;
-<img src="pages/duke-logo.png" alt="LinkedIn logo" width="28" height="28">
-
-## Skills
-
-**Programming Languages:** Python, R, SQL, Java, C++.
-
-**Libraries, Packages, and more:** NumPy, Pandas, SciPy, scikit-learn, Tidyverse, R Packages, Quarto, MongoDB.
-
-**Other Technical:** MS Office, Data Visualization, Statistical Modeling, Machine Learning, Causal Inference, Git/GitHub.
-
-**Soft Skills:** Ability to Effectively Communicate, Decision Making, Adaptability, Critical Thinking, Curiosity, Attention to Detail, Problem Solving Skills, Focus, Leadership, Presentation, Ambition, Creativity, Collaboration, Teaching.
-
-## Work Experience
-
-:::{#work-experience1 style="line-height: 0.8;"}
-
-**Graduate Student Instructor** - Concepts in Computing with Data 
-
-*UC Berkeley Statistics Department*
-
-August 2024 - Present
-:::
-
-- Deliver engaging lab sections for a cohort of 76 students, covering foundational and advanced statistical
-computing concepts in R.
-
-- Guide students in adopting best practices for data analysis and statistical computing, including effective use
-of R packages, reproducible research techniques, and data visualization principles.
-
-:::{#work-experience2 style="line-height: 0.8;"}
-**Co-Founder & Facilitator - Intro to Data Visualization DeCal Course**
-
-*UC Berkeley Statistics Department*
-
-June 2023 - July 2024
-:::
-- Worked with Berkeley Statistics Professor to develop syllabus and 14 weeks of `course` content including
-lectures, labs, homework, and video tutorials.
-
-- Conducted surveys to adjust and improve course material throughout each semester. Saw an increase of
-over 300% in enrolled students between Fall and Spring semesters as a result of improvements.
-
-::: {#work-experience3}
-
-::: {style="line-height: 0.8;"}
-**Academic Tutor**
-
-*UC Berkeley Statistics Department*
-:::
-
-- ::: {style="line-height: 0.8;"}
-    **Concepts in Computing with Data**
-
-    January 2024 - May 2024
-  :::
-
-    - Effectively communicated statistical computing concepts in a detailed and easily digestible manner during twice weekly office hours.
-   
-    - Contributed to understanding of statistical computing concepts in R and leadership.
-    
-
-- ::: {style="line-height: 0.8;"}
-    **Introduction to Probability and Statistics**
-
-    January 2023 - May 2023
-  :::
-
-    - Thrived in a teamwork setting and Improved teaching skills. 
-    
-    - Created walkthrough videos of problem sets and held weekly office hours.
-:::
-
-### Projects
-
-A portfolio of my Data Science projects [can be found here.](projects.qmd)
+- I wasn't able to whistle until last year.

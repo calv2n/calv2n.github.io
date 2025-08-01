@@ -8,6 +8,26 @@ format:
         icon: github
 ---
 
+## BOLD fMRI Prediction
+
+**April 2025 - May 2025**
+
+[link to project](https://drive.google.com/file/d/1jY9rPmi9KL8HmcPJj48atkWLQ1aqlJuM/view?usp=sharing)
+
+Code available upon request.
+
+<embed src="pages/fmri.pdf" type="application/pdf" width="100%" height="800px">
+
+## Arctic Cloud Classification Autoencoder 
+
+**February 2025 - March 2025**
+
+[link to project](https://drive.google.com/file/d/1iBeOGz29KQoSueiPPsyDFnaOw3wz3VYJ/view?usp=sharing)
+
+Code available upon request.
+
+<embed src="pages/cloud.pdf" type="application/pdf" width="100%" height="800px">
+
 ## Adaptive Rejection Sampler
 
 **November 2024 - December 2024**
