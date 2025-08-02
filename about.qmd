@@ -8,9 +8,9 @@ format:
         icon: github
 ---
 
-The most recent copy of my **resume** [can be found here.](https://drive.google.com/file/d/18m9deW-zvAJwQ32xp2XWKmBaR3QZ3U9W/view?usp=sharing)
+The most recent copy of my **resume** [can be found here.](https://drive.google.com/file/d/1iw0CGJds8aQei3bYyK_bWeSHkjh_oq2M/view?usp=sharing)
 
-Calvin Carter is a passionate Data Scientist with extensive project experience using Python, R, and PostgreSQL. His current career goal is an internship in Data Science or Data Analytics while he completes his Masters degree in Statistics at UC Berkeley.
+Calvin Carter is a passionate Data Scientist with extensive project experience using Python, R, and PostgreSQL. His current career goal is a full time position as a Data Scientist or Machine Learning Engineer while he completes his Masters degree in Statistics at UC Berkeley (one more semester!).
 
 ## More About Me
 
