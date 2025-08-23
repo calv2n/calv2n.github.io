@@ -14,12 +14,12 @@ website:
         text: Projects
       - href: https://drive.google.com/file/d/1iw0CGJds8aQei3bYyK_bWeSHkjh_oq2M/view?usp=sharing
         text: Resume
+        target: _blank
 
 format:
   html:
     theme: sandstone
     css: styles.css
     toc: true
-
-
+    linkcolor: "#1a73e8"
 

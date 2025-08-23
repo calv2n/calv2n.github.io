@@ -1,14 +1,15 @@
 ---
 title: Project Portfolio
 format:
-  html: default
+    html: 
+        target: _blank
 ---
 
 ## BOLD fMRI Prediction
 
 **April 2025 - May 2025**
 
-[link to project](https://drive.google.com/file/d/1jY9rPmi9KL8HmcPJj48atkWLQ1aqlJuM/view?usp=sharing)
+<a href="https://drive.google.com/file/d/1jY9rPmi9KL8HmcPJj48atkWLQ1aqlJuM/view?usp=sharing" target="_blank">link to project</a>
 
 Code available upon request.
 
@@ -32,13 +33,13 @@ We knew that traditional word embedding strategies would be effective, but unhel
 
 - Pretrained and Fine-tuned BERT-style Masked Language Model -- Because MLMs require a massive amount of data and time to train, we fine-tuned a pre-trained BERT-style MLM on our specific story dataset to better capture the linguistic patterns. Fine-tuning allowed the embeddings to adapt to the nuances of the spoken narratives, potentially improving the alignment between textual features and fMRI responses. We compared prediction accuracy between the pretrained and fine-tuned models to assess the impact of domain adaptation on brain activity modeling.
 
-Read more about our results in [our project paper!](https://drive.google.com/file/d/1jY9rPmi9KL8HmcPJj48atkWLQ1aqlJuM/view?usp=sharing)
+Read more about our results in <a href="https://drive.google.com/file/d/1jY9rPmi9KL8HmcPJj48atkWLQ1aqlJuM/view?usp=sharing" target="_blank">our project paper!</a>
 
 ## Arctic Cloud Classification Autoencoder 
 
 **February 2025 - March 2025**
 
-[link to project](https://drive.google.com/file/d/1iBeOGz29KQoSueiPPsyDFnaOw3wz3VYJ/view?usp=sharing)
+<a href="https://drive.google.com/file/d/1iBeOGz29KQoSueiPPsyDFnaOw3wz3VYJ/view?usp=sharing" target="_blank">link to project</a>
 
 Code available upon request.
 
@@ -60,7 +61,7 @@ We decided to engineer a feature that combined the 3 "most important" features o
 
 After a lot of consideration and training, the final model we chose was a gradient boosting classifier with 63 leaves since it had the highest cross-validation F1-score (0.87). And after training this model with the entire training set, it had an **F1-score** of **0.944**, an **accuracy** of **0.985**, a **precision** of **0.914**, and a **recall** of **0.977** with the test set.
 
-Read more about our results in [our project paper!](https://drive.google.com/file/d/1iBeOGz29KQoSueiPPsyDFnaOw3wz3VYJ/view?usp=sharing)
+Read more about our results in <a href="https://drive.google.com/file/d/1iBeOGz29KQoSueiPPsyDFnaOw3wz3VYJ/view?usp=sharing" target="_blank">our project paper!</a>
 
 ## Adaptive Rejection Sampler
 
@@ -205,7 +206,7 @@ plt.show()
 
 **January 2024 - June 2024**
 
-[https://www.github.com/gradebook-dev/](https://www.github.com/gradebook-dev/)
+Code available upon request.
 
 ### Description:
  
@@ -293,7 +294,7 @@ Used **k-fold cross validation** to optimize C value in `svm.SVC` function found
 
 **December 2023**
 
-[https://github.com/calv2n/diabetes-risk-model](https://github.com/calv2n/diabetes-risk-model)
+<a href="https://github.com/calv2n/diabetes-risk-model" target="_blank">https://github.com/calv2n/diabetes-risk-model</a>
 
 **Description:** In this project, I gathered data about diabetes patients from [Kaggle](https://www.kaggle.com) and made accurate models for diagnosis given some common indicators. For my models, I wanted high accuracy and interpretability so we can see why the model chose what it chose. This is why I decided to use two seperate models: **Logistic Regression** and the **Random Forest Classifier**.
 
