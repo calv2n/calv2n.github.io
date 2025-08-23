@@ -1,1 +1,20 @@
 /* css styles */
+.sidebar nav[role="doc-toc"] ul > li > ul {
+    display: none;
+    transition: all 0.3s ease;
+}
+  
+.sidebar nav[role="doc-toc"] ul > li.active > ul {
+    display: block;
+}
+  
+  /* Optional: Add animation */
+.sidebar nav[role="doc-toc"] ul > li > ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.sidebar nav[role="doc-toc"] ul > li.active > ul {
+    max-height: 1000px; /* Adjust based on content */
+}
