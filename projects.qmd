@@ -18,19 +18,21 @@ This project explores how the human brain processes natural language by developi
 
 We knew that traditional word embedding strategies would be effective, but unhelpful when accounting for contextual understanding. Thus, we developed 5 models to compare:
 
-**Traditional Embeddings (non-contextual):**
+### Traditional Embedding Methods:
 
 - One-Hot Encoding -- To create the OHE embeddings, we mark each word that appears in the story as a 1 with respect to a word bank, and leave all words that don't appear as 0. Similar to bag-of-words.
 
-- Word2Vec
+- Word2Vec -- These models are shallow, two-layer neural networks that are trained to reconstruct linguistic contexts of words. Word2vec takes as its input a large amount of text and produces a mapping of the set of words to a vector space, typically of several hundred dimensions, with each unique word in the group being assigned a vector in the space. 
 
-- GloVe
+- GloVe -- constructs a word co-occurrence matrix where each element reflects how often a pair of words appears together within a given context window. It then optimizes the word vectors such that the dot product between any two word vectors approximates the pointwise mutual information (PMI) of the corresponding word pair.
 
-**Deep Learning Embeddings (contextual):**
+### Deep Learning Embedding Methods (contextual):
 
-- Initial BERT-style Masked Language Model
+- Initial BERT-style Masked Language Model -- We leveraged PyTorch to build & train a BERT-style masked language model (MLM) encoder to generate contextual embeddings using the provided stories. These embeddings attempt to capture nuanced semantic and syntactic information based on the surrounding context. By aligning BERT embeddings with fMRI timepoints, we evaluated how well contextualized representations predict brain activity compared to traditional static embeddings.
 
-- Pretrained and Fine-tuned BERT-style Masked Language Model
+- Pretrained and Fine-tuned BERT-style Masked Language Model -- Because MLMs require a massive amount of data and time to train, we fine-tuned a pre-trained BERT-style MLM on our specific story dataset to better capture the linguistic patterns. Fine-tuning allowed the embeddings to adapt to the nuances of the spoken narratives, potentially improving the alignment between textual features and fMRI responses. We compared prediction accuracy between the pretrained and fine-tuned models to assess the impact of domain adaptation on brain activity modeling.
+
+Read more about our results in [our project paper!](https://drive.google.com/file/d/1jY9rPmi9KL8HmcPJj48atkWLQ1aqlJuM/view?usp=sharing)
 
 ## Arctic Cloud Classification Autoencoder 
 
@@ -42,6 +44,23 @@ Code available upon request.
 
 ### Description:
 
+This project addresses the challenges of accurately detecting cloud coverage in the Arctic, where snow, ice, and clouds have similar visual characteristics. Traditional satellite imagery struggles in polar regions due to uniform color and temperature, but the Multi-angle Imaging SpectroRadiometer (MISR) sensor improves detection by capturing data from nine different angles. In this project we leverage deep learning, feature engineering, and gradient boosting to create highly accurate (>98%) classifications of cloud and non-cloud pixels.
+
+### Autoencoder
+
+We leveraged PyTorch to build a 6-layer autoencoder with convolutional layers. Because we wanted to maximize reconstriction accuracy, we didn't reduce the original size of images (set stride to 1 for each layer). To do so without running out of GPU memory, we processed the images in 9x9 patches at train time. 
+
+Once fully trained, we downloaded the latent embeddings into CSV files, and eventually joined them with their associated pixels. Using the most "important" embeddings as features and engineered features, we then were able to utilize machine learning models for cloud prediction.
+
+### Feature Engineering
+
+We decided to engineer a feature that combined the 3 "most important" features of the perimeter pixels of the current pixel. The idea behind this decision was that cloud pixels are close to one another these can help our final model better know about what's close by. To find the most important features, we leveraged a decision tree to determine the feature importance of each angle's features.
+
+### Gradient Boosted Model
+
+After a lot of consideration and training, the final model we chose was a gradient boosting classifier with 63 leaves since it had the highest cross-validation F1-score (0.87). And after training this model with the entire training set, it had an **F1-score** of **0.944**, an **accuracy** of **0.985**, a **precision** of **0.914**, and a **recall** of **0.977** with the test set.
+
+Read more about our results in [our project paper!](https://drive.google.com/file/d/1iBeOGz29KQoSueiPPsyDFnaOw3wz3VYJ/view?usp=sharing)
 
 ## Adaptive Rejection Sampler
 

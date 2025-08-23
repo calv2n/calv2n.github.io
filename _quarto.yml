@@ -12,6 +12,8 @@ website:
         text: About
       - href: projects.qmd
         text: Projects
+      - href: https://drive.google.com/file/d/1iw0CGJds8aQei3bYyK_bWeSHkjh_oq2M/view?usp=sharing
+        text: Resume
 
 format:
   html:
